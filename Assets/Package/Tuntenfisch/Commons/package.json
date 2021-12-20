@@ -12,5 +12,6 @@
 		"name": "Tuntenfisch",
 		"url": "https://github.com/Tuntenfisch"
 	},
-	"licensesUrl": "https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package/blob/release/LICENSE"
+	"licensesUrl": "https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package/blob/release/LICENSE",
+	"hideInEditor": "false"
 }
