@@ -1,15 +1,17 @@
 {
 	"name": "com.tuntenfisch.commons",
-	"version": "1.0.0",
-	"displayName": "Tuntenfisch Commons",
+	"displayName": "Commons",
+	"description": "Package containing useful game-agnostic code for various aspect such as animation, pooling, coupling or input.",
+	"version": "1.1.0",
 	"unity": "2019.1",
 	"dependencies": {
 		"com.unity.animation.rigging": "1.1.1",
-		"com.unity.inputsystem": "1.2.0"
+		"com.unity.inputsystem": "1.2.0",
 	},
 	"author": {
 		"name": "Tuntenfisch",
 		"url": "https://github.com/Tuntenfisch"
 	},
-	"license": "MIT"
+	"licensesUrl": "https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package/blob/release/LICENSE",
+	"hideInEditor": false
 }
