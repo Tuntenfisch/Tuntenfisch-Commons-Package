@@ -5,11 +5,11 @@
 	"unity": "2019.1",
 	"dependencies": {
 		"com.unity.animation.rigging": "1.1.1",
-		"com.unity.inputsystem": "1.2.0",
-	}
+		"com.unity.inputsystem": "1.2.0"
+	},
 	"author": {
 		"name": "Tuntenfisch",
 		"url": "https://github.com/Tuntenfisch"
-	}
-	"license": "MIT",
+	},
+	"license": "MIT"
 }
