@@ -4,7 +4,7 @@
 
 ## Installation
 
-**Important:** To install this package you will need a Unity version which supports adding a git package that resides in a repository sub-folder, e.g. Unity version >= 2019.3.4f1.
+**Important:** To install this package you will need a Unity version which supports adding a git package that resides in a repository's sub-folder, e.g. Unity version >= 2019.3.4f1.
 
 You can install this package inside your Unity project by following the steps below:
 
