@@ -2,7 +2,7 @@
 
 namespace Tuntenfisch.Commons.Animations
 {
-    [CreateAssetMenu(fileName = "Clip Set", menuName = "Tuntenfisch/Animations/New Clip Set", order = 1)]
+    [CreateAssetMenu(fileName = "Clip Set", menuName = "Tuntenfisch/Commons/Animations/New Clip Set", order = 1)]
     public class ClipSet : ScriptableObject
     {
         [SerializeField]
