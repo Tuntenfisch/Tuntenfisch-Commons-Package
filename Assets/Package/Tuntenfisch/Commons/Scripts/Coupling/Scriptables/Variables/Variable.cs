@@ -35,5 +35,13 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
         {
             m_currentValue = m_defaultValue;
         }
+
+        private void OnValidate()
+        {
+            if (m_isConstant)
+            {
+                m_currentValue = m_defaultValue;
+            }
+        }
     }
 }

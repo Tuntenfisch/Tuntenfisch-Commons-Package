@@ -1,4 +1,5 @@
 ﻿using System;
+using Tuntenfisch.Commons.Coupling.Scriptables.Attributes;
 using UnityEngine;
 
 namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
@@ -11,6 +12,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
             get => m_useLiteral ? m_literalValue : m_variable.CurrentValue;
         }
 
+        [AccessHint(AccessFlags.Read)]
         [SerializeField]
         private Variable<T> m_variable;
         [SerializeField]

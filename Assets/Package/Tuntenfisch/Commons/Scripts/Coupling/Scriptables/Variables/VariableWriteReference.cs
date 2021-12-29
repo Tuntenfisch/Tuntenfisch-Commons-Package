@@ -1,4 +1,5 @@
 ﻿using System;
+using Tuntenfisch.Commons.Coupling.Scriptables.Attributes;
 using UnityEngine;
 
 namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
@@ -21,6 +22,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
             }
         }
 
+        [AccessHint(AccessFlags.Write)]
         [SerializeField]
         private Variable<T> m_variable;
         [SerializeField]
