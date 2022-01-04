@@ -8,13 +8,16 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables
 {
     public abstract class FindClosestMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
+        #region Inspector Variables
         [AccessHint(AccessFlags.Read)]
         [SerializeField]
         private RuntimeSet<T> m_runtimeSet;
         [AccessHint(AccessFlags.Write)]
         [SerializeField]
         private Variable<T> m_output;
+        #endregion
 
+        #region Unity Callbacks
         private void Update()
         {
             float shortestDistanceSquared = float.MaxValue;
@@ -32,5 +35,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables
             }
             m_output.CurrentValue = closestMonoBehaviour;
         }
+        #endregion
     }
 }

@@ -6,8 +6,11 @@ namespace Tuntenfisch.Commons.Editor
 {
     public static class Handles
     {
+        #region Public Variables
         public static GUIStyle s_centeredTextStyle;
-        
+        #endregion
+
+        #region Public Methods
         public static void ColoredLabel(float3 position, string label, Color color)
         {
             if (s_centeredTextStyle == null)
@@ -34,5 +37,6 @@ namespace Tuntenfisch.Commons.Editor
             GUI.Label(new Rect(guiPoint.xy - 0.5f * contentSize, contentSize), content, s_centeredTextStyle);
             UnityEditor.Handles.EndGUI();
         }
+        #endregion
     }
 }

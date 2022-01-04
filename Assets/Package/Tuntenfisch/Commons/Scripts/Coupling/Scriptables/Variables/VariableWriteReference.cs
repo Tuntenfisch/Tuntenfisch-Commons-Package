@@ -7,6 +7,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
     [Serializable]
     public sealed class VariableWriteReference<T>
     {
+        #region Public Variables
         public T CurrentValue
         {
             set
@@ -21,7 +22,9 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
                 }
             }
         }
+        #endregion
 
+        #region Inspector Variables
         [AccessHint(AccessFlags.Write)]
         [SerializeField]
         private Variable<T> m_variable;
@@ -29,5 +32,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
         private T m_literalValue;
         [SerializeField]
         private bool m_useLiteral;
+        #endregion
     }
 }

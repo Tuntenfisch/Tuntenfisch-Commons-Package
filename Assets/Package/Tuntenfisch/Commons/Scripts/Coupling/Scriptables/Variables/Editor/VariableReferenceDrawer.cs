@@ -9,6 +9,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
     [CustomPropertyDrawer(typeof(VariableReadWriteReference<>), useForChildren: true)]
     public class VariableReferenceDrawer : PropertyDrawer
     {
+        #region Private Variables
         private readonly string[] m_popupOptions =
         {
             "Use Literal",
@@ -20,7 +21,9 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
         private SerializedProperty m_literalValueProperty;
         private SerializedProperty m_useLiteralProperty;
         private Type m_variableCurrentValueType;
+        #endregion
 
+        #region Unity Callbacks
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (m_popupStyle == null)
@@ -91,12 +94,15 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
                 return EditorGUIUtility.singleLineHeight;
             }
         }
+        #endregion
 
+        #region Private Methods
         private void Initialize(SerializedProperty property)
         {
             m_variableProperty = property.FindPropertyRelative("m_variable");
             m_literalValueProperty = property.FindPropertyRelative("m_literalValue");
             m_useLiteralProperty = property.FindPropertyRelative("m_useLiteral");
         }
+        #endregion
     }
 }

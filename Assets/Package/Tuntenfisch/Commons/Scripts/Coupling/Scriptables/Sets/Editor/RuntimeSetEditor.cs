@@ -7,9 +7,12 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets.Editor
     [CustomEditor(typeof(RuntimeSet<>), editorForChildClasses: true)]
     public class RuntimeSetEditor : ScriptableEditor
     {
+        #region Private Variables
         private SerializedProperty m_serializedSetProperty;
         private Type m_elementType;
+        #endregion
 
+        #region Unity Callbacks
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -17,7 +20,9 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets.Editor
             m_serializedSetProperty = serializedObject.FindProperty("m_serializedSet");
             m_elementType = target.GetType().BaseType.GetGenericArguments()[0];
         }
+        #endregion
 
+        #region Protected Methods
         protected override void DisplayProperties()
         {
             if (m_serializedSetProperty.arraySize != 0)
@@ -32,5 +37,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets.Editor
                 EditorGUILayout.EndVertical();
             }
         }
+        #endregion
     }
 }

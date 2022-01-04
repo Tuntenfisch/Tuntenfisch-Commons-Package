@@ -7,13 +7,18 @@ namespace Tuntenfisch.Commons.Input
 {
     public class InputActionSubscriber : MonoBehaviour
     {
-        private static Dictionary<InputAction, int> s_subscriberCounts = new Dictionary<InputAction, int>();
-
+        #region Inspector Variables
         [SerializeField]
         private InputActionReference[] m_subscribedInputActions;
+        #endregion
+
+        #region Private Variables
+        private static Dictionary<InputAction, int> s_subscriberCounts = new Dictionary<InputAction, int>();
 
         private Dictionary<InputAction, Action<InputAction.CallbackContext>> m_subscriptions = new Dictionary<InputAction, Action<InputAction.CallbackContext>>();
+        #endregion
 
+        #region Unity Callbacks
         private void Start()
         {
             SubscribeToInputActions(m_subscribedInputActions);
@@ -23,7 +28,9 @@ namespace Tuntenfisch.Commons.Input
         {
             UnsubscribeFromInputActions(m_subscribedInputActions);
         }
+        #endregion
 
+        #region Private Methods
         private void SubscribeToInputActions(InputActionReference[] actions)
         {
             foreach (InputActionReference inputActionReference in actions)
@@ -69,5 +76,6 @@ namespace Tuntenfisch.Commons.Input
                 }
             }
         }
+        #endregion
     }
 }

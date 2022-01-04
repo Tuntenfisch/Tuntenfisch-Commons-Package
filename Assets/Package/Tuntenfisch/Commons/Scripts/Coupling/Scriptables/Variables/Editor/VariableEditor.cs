@@ -7,11 +7,14 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
     [CustomEditor(typeof(Variable<>), editorForChildClasses: true)]
     public class VariableEditor : ScriptableEditor
     {
+        #region Private Variables
         private SerializedProperty m_defaultValueProperty;
         private SerializedProperty m_isConstantProperty;
         private SerializedProperty m_valueProperty;
         private Type m_valueType;
+        #endregion
 
+        #region Unity Callbacks
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -21,7 +24,9 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
             m_valueProperty = serializedObject.FindProperty("m_currentValue");
             m_valueType = m_valueProperty.serializedObject.targetObject.GetType().BaseType.GetGenericArguments()[0];
         }
+        #endregion
 
+        #region Protected Methods
         protected override void DisplayProperties()
         {
             EditorGUILayout.PropertyField(m_defaultValueProperty);
@@ -41,5 +46,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
             }
             EditorGUILayout.PropertyField(m_isConstantProperty);
         }
+        #endregion
     }
 }

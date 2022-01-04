@@ -4,6 +4,7 @@ namespace Tuntenfisch.Commons.Coupling
 {
     public abstract class SingletonComponent<T> : MonoBehaviour where T : MonoBehaviour
     {
+        #region Public Variables
         public static T Instance
         {
             get
@@ -16,7 +17,10 @@ namespace Tuntenfisch.Commons.Coupling
                 return s_instance;
             }
         }
+        #endregion
 
+        #region Private Variables
         private static T s_instance = default;
+        #endregion
     }
 }

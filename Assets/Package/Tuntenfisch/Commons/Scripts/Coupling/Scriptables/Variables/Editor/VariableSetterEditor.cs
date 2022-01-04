@@ -7,12 +7,15 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
     [CustomEditor(typeof(VariableSetter))]
     public class VariableSetterEditor : UnityEditor.Editor
     {
+        #region Private Variables
         private SerializedProperty m_variableTypeProperty;
         private SerializedProperty m_gameObjectVariableProperty;
         private SerializedProperty m_gameObjectValueProperty;
         private SerializedProperty m_transformVariableProperty;
         private SerializedProperty m_transformValueProperty;
+        #endregion
 
+        #region Unity Callbacks
         private void OnEnable()
         {
             m_variableTypeProperty = serializedObject.FindProperty("m_variableType");
@@ -43,5 +46,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables.Editor
             }
             serializedObject.ApplyModifiedProperties();
         }
+        #endregion
     }
 }

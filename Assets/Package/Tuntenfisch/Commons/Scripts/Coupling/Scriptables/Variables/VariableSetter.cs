@@ -5,6 +5,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
 {
     public sealed class VariableSetter : MonoBehaviour
     {
+        #region Inspector Variables
         [SerializeField]
         private VariableType m_variableType;
         [AccessHint(AccessFlags.Write)]
@@ -17,7 +18,9 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
         private Variable<Transform> m_transformVariable;
         [SerializeField]
         private Transform m_transformValue;
+        #endregion
 
+        #region Unity Callbacks
         private void Awake()
         {
             switch(m_variableType)
@@ -31,6 +34,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
                     break;
             }
         }
+        #endregion
 
         public enum VariableType
         {

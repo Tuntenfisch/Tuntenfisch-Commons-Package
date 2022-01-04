@@ -7,8 +7,11 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Events.Editor
     [CustomEditor(typeof(GameEvent))]
     public class EventEditor : ScriptableEditor
     {
+        #region Private Variables
         private SerializedProperty m_onGameEventInvokedProperty;
+        #endregion
 
+        #region Protected Methods
         protected override void DisplayProperties()
         {
             EditorGUI.BeginDisabledGroup(!Application.isPlaying);
@@ -20,5 +23,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Events.Editor
             }
             EditorGUI.EndDisabledGroup();
         }
+        #endregion
     }
 }

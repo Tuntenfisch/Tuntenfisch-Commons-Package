@@ -16,8 +16,8 @@ namespace Tuntenfisch.Commons.Animations.Editor
                 Initialize(property);
             }
 
-            label = UnityEditor.EditorGUI.BeginProperty(position, label, property);
-            Rect controlRect = UnityEditor.EditorGUI.PrefixLabel(position, label);
+            label = EditorGUI.BeginProperty(position, label, property);
+            Rect controlRect = EditorGUI.PrefixLabel(position, label);
         
             GUIContent animationLabel = new GUIContent(m_animationProperty.displayName);
             GUIContent targetDurationLabel = new GUIContent(m_targetDurationProperty.displayName);
@@ -30,11 +30,11 @@ namespace Tuntenfisch.Commons.Animations.Editor
             Rect targetDurationLabelRect = new Rect(animationRect.xMax + Commons.Editor.EditorGUI.HorizontalPadding, controlRect.y, targetDurationLabelWidth, controlRect.height);
             Rect targetDurationRect = new Rect(targetDurationLabelRect.xMax, controlRect.y, 0.5f * controlRect.width - targetDurationLabelWidth, controlRect.height);
 
-            UnityEditor.EditorGUI.LabelField(animationLabelRect, animationLabel);
-            UnityEditor.EditorGUI.PropertyField(animationRect, m_animationProperty, GUIContent.none);
-            UnityEditor.EditorGUI.LabelField(targetDurationLabelRect, targetDurationLabel);
-            UnityEditor.EditorGUI.PropertyField(targetDurationRect, m_targetDurationProperty, GUIContent.none);
-            UnityEditor.EditorGUI.EndProperty();
+            EditorGUI.LabelField(animationLabelRect, animationLabel);
+            EditorGUI.PropertyField(animationRect, m_animationProperty, GUIContent.none);
+            EditorGUI.LabelField(targetDurationLabelRect, targetDurationLabel);
+            EditorGUI.PropertyField(targetDurationRect, m_targetDurationProperty, GUIContent.none);
+            EditorGUI.EndProperty();
         }
 
         private void Initialize(SerializedProperty property)

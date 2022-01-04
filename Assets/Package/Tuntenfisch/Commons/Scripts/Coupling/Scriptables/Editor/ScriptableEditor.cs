@@ -9,6 +9,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Editor
 {
     public abstract class ScriptableEditor : UnityEditor.Editor
     {
+        #region private Variables
         // Workaround to get width. Taken from https://forum.unity.com/threads/editorguilayout-get-width-of-inspector-window-area.82068/#post-7155460.
         private float Width
         {
@@ -30,7 +31,9 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Editor
         private GUIContent m_hasAccessFlagIcon;
         private GUIStyle m_centeredBoldLabelStyle;
         private float m_width;
+        #endregion
 
+        #region Unity Callbacks
         protected virtual void OnEnable()
         {
             SceneView.duringSceneGui += OnSceneGUI;
@@ -52,8 +55,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
-        protected abstract void DisplayProperties();
-
         private void OnSceneGUI(SceneView sceneView)
         {
             foreach ((GameObject gameObject, Reference reference) in from pair in m_references where pair.Key != null select pair)
@@ -61,8 +62,21 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Editor
                 Commons.Editor.Handles.ColoredLabel(gameObject.transform.position, $"<b>{gameObject.name}</b>\n<i>{reference.AccessFlags} Access</i>", reference.LabelColor);
             }
         }
+        #endregion
 
-        protected void DisplayFindInSceneButton()
+        #region Protected Methods
+        protected abstract void DisplayProperties();
+        #endregion
+
+        #region Private Methods
+        private AccessFlags GetAccessFlags(SerializedProperty property)
+        {
+            AccessHintAttribute accessHintAttribute = Commons.Editor.EditorGUI.GetAttribute<AccessHintAttribute>(property);
+
+            return accessHintAttribute != null ? accessHintAttribute.AccessFlags : AccessFlags.Unkown;
+        }
+
+        private void DisplayFindInSceneButton()
         {
             if (GUILayout.Button($"Find {ObjectNames.NicifyVariableName(nameof(GameObject))}s in Scene referencing {target.name}"))
             {
@@ -113,14 +127,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Editor
             }
         }
 
-        protected AccessFlags GetAccessFlags(SerializedProperty property)
-        {
-            AccessHintAttribute accessHintAttribute = Commons.Editor.EditorGUI.GetAttribute<AccessHintAttribute>(property);
-
-            return accessHintAttribute != null ? accessHintAttribute.AccessFlags : AccessFlags.Unkown;
-        }
-
-        protected void DisplayReferences()
+        private void DisplayReferences()
         {
             if (m_references.Count != 0)
             {
@@ -151,6 +158,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Editor
                 EditorGUILayout.EndVertical();
             }
         }
+        #endregion
 
         private class Reference
         {

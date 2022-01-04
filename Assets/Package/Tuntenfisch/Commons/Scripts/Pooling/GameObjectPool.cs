@@ -6,13 +6,16 @@ namespace Tuntenfisch.Commons.Pooling
 {
     public class GameObjectPool
     {
+        #region Private Variables
         private Dictionary<GameObject, ObjectPool<GameObject>> m_pool = new Dictionary<GameObject, ObjectPool<GameObject>>();
+        #endregion
 
         public GameObjectPool()
         {
 
         }
 
+        #region Public Methods
         public GameObject Get(GameObject prefab)
         {
             if (!m_pool.ContainsKey(prefab))
@@ -64,5 +67,6 @@ namespace Tuntenfisch.Commons.Pooling
 
             return this;
         }
+        #endregion
     }
 }

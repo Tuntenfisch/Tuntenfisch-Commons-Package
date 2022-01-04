@@ -7,16 +7,23 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets
 {
     public abstract class RuntimeSet<T> : ScriptableObject, IEnumerable<T>, ISerializationCallbackReceiver
     {
+        #region Events
         public event Action<T> OnElementAdded;
         public event Action<T> OnElementRemoved;
+        #endregion
 
+        #region Inspector Variables
         [SerializeField]
         private List<T> m_serializedSet = new List<T>();
+        #endregion
 
+        #region Private Variables
         private HashSet<T> m_set = new HashSet<T>();
         private List<(Operator, T)> m_doLater = new List<(Operator, T)>();
         private bool m_isIterating;
+        #endregion
 
+        #region Public Methods
         public IEnumerator<T> GetEnumerator()
         {
             m_isIterating = true;
@@ -112,6 +119,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets
                 Debug.LogWarning($"Tried to remove an {nameof(element)} from the {nameof(RuntimeSet<T>)} \"{name}\" that is not contained in the set.");
             }
         }
+        #endregion
 
         private enum Operator
         {

@@ -6,6 +6,7 @@ namespace Tuntenfisch.Commons.Attributes.Editor
     [CustomPropertyDrawer(typeof(InlineFieldAttribute))]
     public class InlineFieldAttributeDrawer : PropertyDrawer
     {
+        #region Unity Callbacks
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (property.hasVisibleChildren)
@@ -47,5 +48,6 @@ namespace Tuntenfisch.Commons.Attributes.Editor
                 return EditorGUI.GetPropertyHeight(property, true);
             }
         }
+        #endregion
     }
 }

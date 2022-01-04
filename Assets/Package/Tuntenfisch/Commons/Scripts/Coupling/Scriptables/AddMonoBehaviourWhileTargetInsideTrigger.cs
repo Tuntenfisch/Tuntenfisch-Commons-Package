@@ -3,20 +3,24 @@ using Tuntenfisch.Commons.Coupling.Scriptables.Sets;
 using Tuntenfisch.Commons.Coupling.Scriptables.Variables;
 using UnityEngine;
 
-
 namespace Tuntenfisch.Commons.Coupling.Scriptables
 {
     public abstract class AddMonoBehaviourWhileTargetInsideTrigger<T> : MonoBehaviour where T : MonoBehaviour
     {
+        #region Inspector Variables
         [AccessHint(AccessFlags.Write)]
         [SerializeField]
         private RuntimeSet<T> m_runtimeSet;
         [AccessHint(AccessFlags.Read)]
         [SerializeField]
         private Variable<GameObject> m_target;
+        #endregion
 
+        #region Private Variables
         private T m_monobehaviour;
+        #endregion
 
+        #region Unity Callbacks
         private void Awake()
         {
             m_monobehaviour = GetComponent<T>();
@@ -52,5 +56,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables
             }
             m_runtimeSet.Remove(m_monobehaviour);
         }
+        #endregion
     }
 }

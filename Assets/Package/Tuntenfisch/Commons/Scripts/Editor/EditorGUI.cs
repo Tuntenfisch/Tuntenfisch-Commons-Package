@@ -7,10 +7,15 @@ namespace Tuntenfisch.Commons.Editor
 {
     public static class EditorGUI
     {
+        #region Public Variables
         public static float HorizontalPadding => c_horizontalPadding;
+        #endregion
 
+        #region Private Variables
         private const float c_horizontalPadding = 4;
+        #endregion
 
+        #region Public Methods
         public static void ScriptHeaderField(SerializedObject serializedObject)
         {
             MonoScript script = null;
@@ -93,5 +98,6 @@ namespace Tuntenfisch.Commons.Editor
             }
             return fieldInfo;
         }
+        #endregion
     }
 }

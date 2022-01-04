@@ -5,6 +5,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
 {
     public abstract class Variable<T> : ScriptableObject
     {
+        #region Public Variables
         public T CurrentValue
         {
             get => m_currentValue;
@@ -18,14 +19,18 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
                 m_currentValue = value;
             }
         }
+        #endregion
 
+        #region Inspector Variables
         [SerializeField]
         private T m_defaultValue;
         [SerializeField]
         private T m_currentValue;
         [SerializeField]
         private bool m_isConstant;
+        #endregion
 
+        #region Unity Callbacks
         private void Awake()
         {
             m_currentValue = m_defaultValue;
@@ -43,5 +48,6 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Variables
                 m_currentValue = m_defaultValue;
             }
         }
+        #endregion
     }
 }

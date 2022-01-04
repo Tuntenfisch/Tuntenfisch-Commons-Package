@@ -7,6 +7,7 @@ namespace Tuntenfisch.Commons.Attributes.Editor
     [CustomPropertyDrawer(typeof(ShowIfAttribute))]
     public class ShowIfAttributeDrawer : PropertyDrawer
     {
+        #region Unity Callbacks
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
@@ -30,7 +31,9 @@ namespace Tuntenfisch.Commons.Attributes.Editor
                 return 0.0f;
             }
         }
+        #endregion
 
+        #region Private Methods
         private bool Show(SerializedProperty property, ShowIfAttribute showIfAttribute)
         {
             SerializedProperty serializedProperty = property.serializedObject.FindProperty(showIfAttribute.FieldName);
@@ -44,5 +47,6 @@ namespace Tuntenfisch.Commons.Attributes.Editor
                 _ => true,
             };
         }
+        #endregion
     }
 }

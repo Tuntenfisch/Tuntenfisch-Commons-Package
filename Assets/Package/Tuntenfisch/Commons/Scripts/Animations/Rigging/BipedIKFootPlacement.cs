@@ -7,6 +7,7 @@ namespace Tuntenfisch.Commons.Animations.Rigging
 {
     public class BipedIKFootPlacement : MonoBehaviour
     {
+        #region Inspector Variables
         [SerializeField]
         private Animator m_animator;
         [Min(0.0f)]
@@ -43,9 +44,13 @@ namespace Tuntenfisch.Commons.Animations.Rigging
         private bool m_drawGizmos;
         [SerializeField]
         private Color m_gizmosColor = Color.cyan;
+        #endregion
 
+        #region Private Variables
         private float m_ankleHeight;
+        #endregion
 
+        #region Unity Callbacks
         private void OnEnable()
         {
             SetWeights(1.0f);
@@ -84,7 +89,9 @@ namespace Tuntenfisch.Commons.Animations.Rigging
             DrawFootGizmos(m_leftFoot);
             DrawFootGizmos(m_rightFoot);
         }
+        #endregion
 
+        #region Private Methods
         private void DrawFootGizmos(IKFoot foot)
         {
             TwoBoneIKConstraint constraint = foot.FootIKConstraint;
@@ -170,6 +177,7 @@ namespace Tuntenfisch.Commons.Animations.Rigging
             m_rightFoot.FootIKConstraint.weight = value;
             m_spineOverrideTransform.weight = value;
         }
+        #endregion
 
         [Serializable]
         private class IKFoot
