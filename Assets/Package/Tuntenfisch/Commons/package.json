@@ -7,7 +7,7 @@
 	"dependencies": {
 		"com.unity.animation.rigging": "1.1.1",
 		"com.unity.inputsystem": "1.2.0",
-		"com.cysharp.unitask": "2.2.5"
+		"com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.2.5"
 	},
 	"author": {
 		"name": "Tuntenfisch",
