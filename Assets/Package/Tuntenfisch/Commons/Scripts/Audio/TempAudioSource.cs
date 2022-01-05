@@ -17,17 +17,29 @@ namespace Tuntenfisch.Commons.Audio
         {
             m_pool = new ObjectPool<AudioSource>
             (
-                () => 
+                () =>
                 {
                     GameObject gameObject = new GameObject("Temporary Audio Source");
+                    // If we don't set HideFlags.DontSave an NRE exception will be thrown 
+                    // occasionally when we enter and exit playmode without a domain reload.
+                    gameObject.hideFlags |= HideFlags.DontSave;
                     AudioSource audioSource = gameObject.AddComponent<AudioSource>();
                     audioSource.playOnAwake = false;
                     audioSource.loop = false;
                     return audioSource;
                 },
-                (audioSource) => audioSource.gameObject.SetActive(true),
-                (audioSource) => audioSource.gameObject.SetActive(false),
-                (audioSource) => UnityEngine.Object.Destroy(audioSource.gameObject),
+                (audioSource) =>
+                {
+                    audioSource.gameObject.SetActive(true);
+                },
+                (audioSource) =>
+                {
+                    audioSource.gameObject.SetActive(false);
+                },
+                (audioSource) =>
+                {
+                    UnityEngine.Object.Destroy(audioSource.gameObject);
+                },
                 true,
                 10,
                 100
@@ -69,7 +81,7 @@ namespace Tuntenfisch.Commons.Audio
             UniTask.Void(async () =>
             {
                 await UniTask.WaitUntil(() => timeRemaining <= 0.0f);
-                Return(audioSource);
+                m_pool.Release(audioSource);
             });
         }
         #endregion
