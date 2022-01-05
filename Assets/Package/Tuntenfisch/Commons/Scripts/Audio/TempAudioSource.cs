@@ -2,6 +2,9 @@
 using System;
 using Tuntenfisch.Commons.Timing;
 using Unity.Mathematics;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -15,31 +18,24 @@ namespace Tuntenfisch.Commons.Audio
 
         static TempAudioSource()
         {
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
+
             m_pool = new ObjectPool<AudioSource>
             (
                 () =>
                 {
                     GameObject gameObject = new GameObject("Temporary Audio Source");
-                    // If we don't set HideFlags.DontSave an NRE exception will be thrown 
-                    // occasionally when we enter and exit playmode without a domain reload.
-                    gameObject.hideFlags |= HideFlags.DontSave;
                     AudioSource audioSource = gameObject.AddComponent<AudioSource>();
                     audioSource.playOnAwake = false;
                     audioSource.loop = false;
                     return audioSource;
                 },
-                (audioSource) =>
-                {
-                    audioSource.gameObject.SetActive(true);
-                },
-                (audioSource) =>
-                {
-                    audioSource.gameObject.SetActive(false);
-                },
-                (audioSource) =>
-                {
-                    UnityEngine.Object.Destroy(audioSource.gameObject);
-                },
+                (audioSource) => audioSource.gameObject.SetActive(true),
+                (audioSource) => audioSource.gameObject.SetActive(false),
+                (audioSource) => UnityEngine.Object.Destroy(audioSource.gameObject),
                 true,
                 10,
                 100
@@ -84,6 +80,18 @@ namespace Tuntenfisch.Commons.Audio
                 m_pool.Release(audioSource);
             });
         }
+        #endregion
+
+        #region Private Methods
+#if UNITY_EDITOR
+        private static void OnPlayModeStateChanged(PlayModeStateChange playModeStateChange)
+        {
+            if (playModeStateChange == PlayModeStateChange.ExitingPlayMode || playModeStateChange == PlayModeStateChange.EnteredPlayMode)
+            {
+                m_pool?.Clear();
+            }
+        }
+#endif
         #endregion
     }
 }
