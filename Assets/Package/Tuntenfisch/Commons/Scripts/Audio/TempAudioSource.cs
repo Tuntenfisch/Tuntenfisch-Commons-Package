@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Tuntenfisch.Commons.Scripts.Audio
+namespace Tuntenfisch.Commons.Audio
 {
     public static class TempAudioSource
     {
@@ -35,6 +35,11 @@ namespace Tuntenfisch.Commons.Scripts.Audio
         }
 
         #region Public Methods
+        public static AudioSource Get()
+        {
+            return Get(0.0f);
+        }
+
         public static AudioSource Get(float3 position)
         {
             AudioSource audioSource = m_pool.Get();
@@ -51,7 +56,7 @@ namespace Tuntenfisch.Commons.Scripts.Audio
             m_pool.Release(audioSource);
         }
 
-        public static void Play(float3 position, Action<AudioSource> setupAudioSource)
+        public static void PlayAtPoint(float3 position, Action<AudioSource> setupAudioSource)
         {
             if (setupAudioSource == null)
             {
