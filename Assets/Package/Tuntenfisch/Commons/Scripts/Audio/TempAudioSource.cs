@@ -10,26 +10,24 @@ namespace Tuntenfisch.Commons.Audio
     public static class TempAudioSource
     {
         #region Private Variables
-        private static GameObject m_prefab;
         private static ObjectPool<AudioSource> m_pool;
         #endregion
 
         static TempAudioSource()
         {
-            m_prefab = new GameObject("Temporary Audio Source");
-            AudioSource audioSource = m_prefab.AddComponent<AudioSource>();
-            audioSource.playOnAwake = false;
-            audioSource.loop = false;
             m_pool = new ObjectPool<AudioSource>
             (
                 () => 
                 {
-                    GameObject instance = UnityEngine.Object.Instantiate(m_prefab);
-                    return instance.GetComponent<AudioSource>();
+                    GameObject gameObject = new GameObject("Temporary Audio Source");
+                    AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+                    audioSource.playOnAwake = false;
+                    audioSource.loop = false;
+                    return audioSource;
                 },
-                (instance) => instance.gameObject.SetActive(true),
-                (instance) => instance.gameObject.SetActive(false),
-                (instance) => UnityEngine.Object.Destroy(instance.gameObject),
+                (audioSource) => audioSource.gameObject.SetActive(true),
+                (audioSource) => audioSource.gameObject.SetActive(false),
+                (audioSource) => UnityEngine.Object.Destroy(audioSource.gameObject),
                 true,
                 10,
                 100
