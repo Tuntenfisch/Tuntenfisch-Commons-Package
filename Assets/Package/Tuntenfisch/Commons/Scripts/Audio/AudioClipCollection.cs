@@ -22,16 +22,28 @@ namespace Tuntenfisch.Commons.Audio
         #region Public Methods
         public virtual float Play(AudioSource audioSource)
         {
+            ValidateState();
+            SetupAudioSource(audioSource);
+            audioSource.Play();
+            return audioSource.clip.length;
+        }
+
+        public virtual void SetupAudioSource(AudioSource audioSource)
+        {
+            ValidateState();
+            audioSource.clip = m_audioClips[UnityEngine.Random.Range(0, m_audioClips.Length)];
+            audioSource.volume = UnityEngine.Random.Range(m_volumeRange.x, m_volumeRange.y);
+            audioSource.pitch = UnityEngine.Random.Range(m_pitchRange.x, m_pitchRange.y);
+        }
+        #endregion
+
+        #region Protected Methods
+        protected virtual void ValidateState()
+        {
             if (m_audioClips.Length == 0)
             {
                 throw new InvalidOperationException($"{nameof(AudioClipCollection)} \"{name}\" cannot play an audio clip because none are registered.");
             }
-            audioSource.clip = m_audioClips[UnityEngine.Random.Range(0, m_audioClips.Length)];
-            audioSource.volume = UnityEngine.Random.Range(m_volumeRange.x, m_volumeRange.y);
-            audioSource.pitch = UnityEngine.Random.Range(m_pitchRange.x, m_pitchRange.y);
-            audioSource.Play();
-
-            return audioSource.clip.length;
         }
         #endregion
     }

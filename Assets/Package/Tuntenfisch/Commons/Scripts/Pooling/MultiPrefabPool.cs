@@ -4,13 +4,13 @@ using UnityEngine.Pool;
 
 namespace Tuntenfisch.Commons.Pooling
 {
-    public class GameObjectPool
+    public class MultiPrefabPool
     {
         #region Private Variables
         private Dictionary<GameObject, ObjectPool<GameObject>> m_pool = new Dictionary<GameObject, ObjectPool<GameObject>>();
         #endregion
 
-        public GameObjectPool()
+        public MultiPrefabPool()
         {
 
         }
@@ -25,9 +25,9 @@ namespace Tuntenfisch.Commons.Pooling
             return m_pool[prefab].Get();
         }
 
-        public void Release(GameObject instance)
+        public void Return(GameObject instance)
         {
-            Poolable poolable = instance.GetComponent<Poolable>();
+            PooledPrefab poolable = instance.GetComponent<PooledPrefab>();
 
             if (poolable == null)
             {
@@ -39,7 +39,7 @@ namespace Tuntenfisch.Commons.Pooling
             m_pool[poolable.Prefab].Release(instance);
         }
 
-        public GameObjectPool AllocatePool(GameObject prefab, int size, int capacity)
+        public MultiPrefabPool AllocatePool(GameObject prefab, int size, int capacity)
         {
             if (m_pool.ContainsKey(prefab))
             {
@@ -51,8 +51,8 @@ namespace Tuntenfisch.Commons.Pooling
                 () =>
                 {
                     GameObject instance = Object.Instantiate(prefab);
-                    Poolable poolable = instance.AddComponent<Poolable>();
-                    poolable.Prefab = prefab;
+                    PooledPrefab pooledPrefab = instance.AddComponent<PooledPrefab>();
+                    pooledPrefab.Prefab = prefab;
 
                     return instance;
                 },
