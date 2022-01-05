@@ -17,7 +17,9 @@ namespace Tuntenfisch.Commons.Audio
         static TempAudioSource()
         {
             m_prefab = new GameObject("Temporary Audio Source");
-            m_prefab.AddComponent<AudioSource>();
+            AudioSource audioSource = m_prefab.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = false;
             m_pool = new ObjectPool<AudioSource>
             (
                 () => 
