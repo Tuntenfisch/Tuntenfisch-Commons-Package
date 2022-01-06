@@ -95,7 +95,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets
             }
             else
             {
-                Debug.LogWarning($"Tried to add an {nameof(element)} to the {nameof(RuntimeSet<T>)} \"{name}\" that is already contained in the set.");
+                Debug.LogWarning($"Tried to add an element to the {nameof(RuntimeSet<T>)} \"{name}\" that is already contained in the set.");
             }
         }
 
@@ -116,7 +116,7 @@ namespace Tuntenfisch.Commons.Coupling.Scriptables.Sets
             }
             else
             {
-                Debug.LogWarning($"Tried to remove an {nameof(element)} from the {nameof(RuntimeSet<T>)} \"{name}\" that is not contained in the set.");
+                Debug.LogWarning($"Tried to remove an element from the {nameof(RuntimeSet<T>)} \"{name}\" that is not contained in the set.");
             }
         }
         #endregion
