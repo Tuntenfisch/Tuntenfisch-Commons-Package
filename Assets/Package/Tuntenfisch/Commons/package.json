@@ -2,7 +2,7 @@
 	"name": "com.tuntenfisch.commons",
 	"displayName": "Commons",
 	"description": "Package containing useful game-agnostic assets for various aspect such as animation, pooling, coupling or input.",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"unity": "2019.1",
 	"dependencies": {
 		"com.unity.animation.rigging": "1.1.1",

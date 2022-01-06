@@ -58,7 +58,7 @@ namespace Tuntenfisch.Commons.Pooling
             m_pool[pooledPrefab.Prefab].Release(pooledInstance);
         }
 
-        public void AllocatePool(GameObject prefab, int size, int capacity)
+        public void AllocatePool(GameObject prefab, Transform parent, int size, int capacity)
         {
             if (m_pool.ContainsKey(prefab))
             {
@@ -69,7 +69,7 @@ namespace Tuntenfisch.Commons.Pooling
             (
                 () =>
                 {
-                    GameObject instance = UnityEngine.Object.Instantiate(prefab);
+                    GameObject instance = UnityEngine.Object.Instantiate(prefab, parent);
                     PooledPrefab pooledPrefab = instance.AddComponent<PooledPrefab>();
                     pooledPrefab.Parent = this;
                     pooledPrefab.Prefab = prefab;
