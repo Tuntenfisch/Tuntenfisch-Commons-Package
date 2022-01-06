@@ -26,7 +26,7 @@ namespace Tuntenfisch.Commons.Pooling
 
             if (!m_pool.ContainsKey(prefab))
             {
-                throw new UnkownPooledPrefabException(prefab);
+                throw new UnknownPooledPrefabException(prefab);
             }
             return m_pool[prefab].Get();
         }
