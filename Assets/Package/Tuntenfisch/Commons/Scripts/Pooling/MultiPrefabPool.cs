@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using System;
 
 namespace Tuntenfisch.Commons.Pooling
 {
@@ -21,11 +21,12 @@ namespace Tuntenfisch.Commons.Pooling
         {
             if (prefab == null)
             {
-                throw new NullReferenceException($"Parameter \"{nameof(prefab)}\" is null.");
+                throw new ArgumentException(nameof(prefab));
             }
+
             if (!m_pool.ContainsKey(prefab))
             {
-                throw new KeyNotFoundException($"Parameter \"{nameof(prefab)}\" specifies a prefab that isn't pooled by this {nameof(MultiPrefabPool)} instance.");
+                throw new UnkownPooledPrefabException(prefab);
             }
             return m_pool[prefab].Get();
         }
@@ -39,7 +40,7 @@ namespace Tuntenfisch.Commons.Pooling
         {
             if (pooledInstance == null)
             {
-                throw new NullReferenceException($"Parameter \"{nameof(pooledInstance)}\" is null.");
+                throw new ArgumentException(nameof(pooledInstance));
             }
             PooledPrefab pooledPrefab = pooledInstance.GetComponent<PooledPrefab>();
 

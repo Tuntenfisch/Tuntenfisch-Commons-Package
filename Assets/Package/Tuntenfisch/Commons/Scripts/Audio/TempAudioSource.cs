@@ -59,7 +59,7 @@ namespace Tuntenfisch.Commons.Audio
         {
             if (audioSource == null)
             {
-                throw new NullReferenceException($"Parameter \"{nameof(audioSource)}\" cannot be null.");
+                throw new ArgumentException(nameof(AudioSource));
             }
             m_pool.Release(audioSource);
         }
@@ -68,7 +68,7 @@ namespace Tuntenfisch.Commons.Audio
         {
             if (setupAudioSource == null)
             {
-                throw new NullReferenceException($"Parameter \"{nameof(setupAudioSource)}\" cannot be null.");
+                throw new ArgumentException(nameof(setupAudioSource));
             }
             AudioSource audioSource = Get(position);
             setupAudioSource(audioSource);
