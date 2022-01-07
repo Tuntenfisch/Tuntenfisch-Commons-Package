@@ -28,11 +28,15 @@ namespace Tuntenfisch.Commons.Tasks
         private void OnDisable()
         {
             m_tokenSource?.Cancel();
+            m_tokenSource?.Dispose();
+            m_tokenSource = null;
         }
 
         private void OnDestroy()
         {
+            m_tokenSource?.Cancel();
             m_tokenSource?.Dispose();
+            m_tokenSource = null;
         }
         #endregion
     }
