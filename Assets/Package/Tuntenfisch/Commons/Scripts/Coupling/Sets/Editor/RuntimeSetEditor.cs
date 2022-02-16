@@ -5,7 +5,7 @@ using UnityEditor;
 namespace Tuntenfisch.Commons.Coupling.Sets.Editor
 {
     [CustomEditor(typeof(RuntimeSet<>), editorForChildClasses: true)]
-    public class RuntimeSetEditor : BaseCouplingEditor
+    public class RuntimeSetEditor : CouplingEditor
     {
         #region Private Fields
         private SerializedProperty m_serializedSetProperty;

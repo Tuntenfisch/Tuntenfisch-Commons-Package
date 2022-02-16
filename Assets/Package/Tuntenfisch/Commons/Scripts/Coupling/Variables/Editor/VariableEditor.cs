@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Tuntenfisch.Commons.Coupling.Variables.Editor
 {
     [CustomEditor(typeof(Variable<>), editorForChildClasses: true)]
-    public class VariableEditor : BaseCouplingEditor
+    public class VariableEditor : CouplingEditor
     {
         #region Private Fields
         private readonly GUIContent valueDisplayName = new GUIContent("Value");

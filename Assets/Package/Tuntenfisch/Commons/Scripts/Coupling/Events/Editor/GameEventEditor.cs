@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Tuntenfisch.Commons.Coupling.Events.Editor
 {
     [CustomEditor(typeof(GameEvent))]
-    public class EventEditor : BaseCouplingEditor
+    public class EventEditor : CouplingEditor
     {
         #region Private Fields
         private SerializedProperty m_onGameEventInvokedProperty;

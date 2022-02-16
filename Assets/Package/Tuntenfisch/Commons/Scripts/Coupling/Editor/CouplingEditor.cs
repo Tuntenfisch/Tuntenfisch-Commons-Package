@@ -7,30 +7,12 @@ using UnityEngine.SceneManagement;
 
 namespace Tuntenfisch.Commons.Coupling.Editor
 {
-    public abstract class BaseCouplingEditor : UnityEditor.Editor
+    public abstract class CouplingEditor : UnityEditor.Editor
     {
-        #region private Variables
-        // Workaround to get width. Taken from https://forum.unity.com/threads/editorguilayout-get-width-of-inspector-window-area.82068/#post-7155460.
-        private float Width
-        {
-            get
-            {
-                GUILayout.BeginHorizontal();
-                GUILayout.FlexibleSpace();
-                GUILayout.EndHorizontal();
-
-                if (Event.current.type == EventType.Repaint)
-                {
-                    m_width = GUILayoutUtility.GetLastRect().width;
-                }
-                return m_width;
-            } 
-        }
-
+        #region Private Fields
         private Dictionary<GameObject, Reference> m_references = new Dictionary<GameObject, Reference>();
         private GUIContent m_hasAccessFlagIcon;
         private GUIStyle m_centeredBoldLabelStyle;
-        private float m_width;
         #endregion
 
         #region Unity Callbacks
@@ -138,8 +120,8 @@ namespace Tuntenfisch.Commons.Coupling.Editor
                     m_centeredBoldLabelStyle.fontStyle = FontStyle.Bold;
                 }
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-                GUILayoutOption smallColumnWidth = GUILayout.Width(0.25f * Width);
-                GUILayoutOption largeColumnWidth = GUILayout.Width(0.5f * Width);
+                GUILayoutOption smallColumnWidth = GUILayout.Width(0.25f * Commons.Editor.EditorGUI.Width);
+                GUILayoutOption largeColumnWidth = GUILayout.Width(0.5f * Commons.Editor.EditorGUI.Width);
                 GUILayoutOption rowHeight = GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight);
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Label(ObjectNames.NicifyVariableName(nameof(GameObject)), m_centeredBoldLabelStyle, largeColumnWidth, rowHeight);

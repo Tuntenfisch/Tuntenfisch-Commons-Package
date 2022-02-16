@@ -280,7 +280,7 @@ namespace Tuntenfisch.Commons.Editor
 
         private static class StaticStyle
         {
-            #region Public Variables
+            #region Public Fields
             public const float Height = 300.0f;
             public const float TickLength = 5.0f;
             public const string CoordinateLabelFormatString = "0.00";
