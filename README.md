@@ -1,15 +1,18 @@
 # Tuntenfisch Commons Package
 
-**Note:** This package is mainly intended to share assets across my personal Unity projects and might therefore change rather rapidly from version to version.
+Useful game-agnostic assets for various aspect such as animation, pooling, coupling or input for URP.
 
-## Installation
+## 1. Installation
 
-**Important:** To install this package you will need a Unity version which supports adding a git package that resides in a repository's sub-folder, e.g. Unity version >= 2019.3.4f1.
+### Requirements for installation 
+1. [Git](https://git-scm.com/) installed and accessible from the command-line interface.
+2. A version of Unity which supports adding a git package that resides in a repository's sub-folder (Unity version >= 2019.3.4f1)
 
-You can install this package inside your Unity project by following the steps below:
+### Installation procedure
 
-1. Open the Package Manager in Unity
-2. Add a new package using the "Add package from git URL..." option
-3. Paste in ```https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package.git?path=Assets/Package/Tuntenfisch/Commons``` for the URL
+Open the Package Manager in Unity and add each package below by selecting the "Add package from git URL..." option.
 
-**Note:** If you want to specify a package version you can append ```#*.*.*``` specifying your desired version to the URL before pasting it.
+|     | Package Name                  | Package URL                                                                                            |
+|:---:|:----------------------------- |:------------------------------------------------------------------------------------------------------ |
+| 1   | ```com.cysharp.unitask```     | https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.2.5                   |
+| 2   | ```com.tuntenfisch.commons``` | https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package.git?path=Assets/Package/Tuntenfisch/Commons |
