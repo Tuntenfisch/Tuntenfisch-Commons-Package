@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Tuntenfisch.Commons.Coupling.Events
 {
-    [CreateAssetMenu(fileName = "Game Event", menuName = "Tuntenfisch Commons/Coupling/Events/New Game Event")]
+    [CreateAssetMenu(fileName = "Game Event", menuName = "Tuntenfisch/Commons/Coupling/Events/New Game Event")]
     public sealed class GameEvent : ScriptableObject
     {
         #region Events

@@ -1,4 +1,4 @@
-Shader "Tuntenfisch Commons/Misc/Copy Depth"
+Shader "Tuntenfisch/Commons/Misc/Copy Depth"
 {
     SubShader
     {

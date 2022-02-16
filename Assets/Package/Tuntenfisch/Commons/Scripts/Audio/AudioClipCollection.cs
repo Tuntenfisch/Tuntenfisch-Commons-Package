@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Tuntenfisch.Commons.Audio
 {
-    [CreateAssetMenu(fileName = "Audio Clip Collection", menuName = "Tuntenfisch Commons/Audio/New Audio Clip Collection")]
+    [CreateAssetMenu(fileName = "Audio Clip Collection", menuName = "Tuntenfisch/Commons/Audio/New Audio Clip Collection")]
     public class AudioClipCollection : ScriptableObject
     {
         #region Inspector Fields

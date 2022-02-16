@@ -20,7 +20,7 @@ namespace Tuntenfisch.Commons.URP
 
             if (m_material == null)
             {
-                m_material = CoreUtils.CreateEngineMaterial("Tuntenfisch Commons/Misc/Copy Depth");
+                m_material = CoreUtils.CreateEngineMaterial("Tuntenfisch/Commons/Misc/Copy Depth");
             }
         }
 
