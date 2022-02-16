@@ -7,12 +7,12 @@ namespace Tuntenfisch.Commons.Input
 {
     public class InputActionSubscriber : MonoBehaviour
     {
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private InputActionReference[] m_subscribedInputActions;
         #endregion
 
-        #region Private Variables
+        #region Private Fields
         private static Dictionary<InputAction, int> s_subscriberCounts = new Dictionary<InputAction, int>();
 
         private Dictionary<InputAction, Action<InputAction.CallbackContext>> m_subscriptions = new Dictionary<InputAction, Action<InputAction.CallbackContext>>();

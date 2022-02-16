@@ -6,7 +6,7 @@ namespace Tuntenfisch.Commons.Tasks
     [DisallowMultipleComponent]
     public sealed class AsyncDisableTrigger : MonoBehaviour
     {
-        #region Public Variables
+        #region Public Properties
         public CancellationToken Token
         {
             get 
@@ -20,7 +20,7 @@ namespace Tuntenfisch.Commons.Tasks
         }
         #endregion
 
-        #region Private Variables
+        #region Private Fields
         private CancellationTokenSource m_tokenSource;
         #endregion
 

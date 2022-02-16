@@ -12,7 +12,7 @@ namespace Tuntenfisch.Commons.Audio
 {
     public static class TempAudioSource
     {
-        #region Private Variables
+        #region Private Fields
         private static ObjectPool<AudioSource> m_pool;
         #endregion
 

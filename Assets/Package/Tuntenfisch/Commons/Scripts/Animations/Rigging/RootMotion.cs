@@ -7,12 +7,12 @@ namespace Tuntenfisch.Commons.Animations.Rigging
     [RequireComponent(typeof(Animator))]
     public class RootMotion : MonoBehaviour
     {
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private UnityEvent<float3, float3> OnRootMotionExtracted;
         #endregion
 
-        #region Private Variables
+        #region Private Fields
         private Animator m_animator;
         #endregion
 

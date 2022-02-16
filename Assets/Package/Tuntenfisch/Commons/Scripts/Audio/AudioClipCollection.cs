@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Tuntenfisch.Commons.Audio
 {
-    [CreateAssetMenu(fileName = "Audio Clip Collection", menuName = "Tuntenfisch/Commons/Audio/New Audio Clip Collection")]
+    [CreateAssetMenu(fileName = "Audio Clip Collection", menuName = "Tuntenfisch Commons/Audio/New Audio Clip Collection")]
     public class AudioClipCollection : ScriptableObject
     {
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private AudioClip[] m_audioClips;
         [MinMaxRange(0.0f, 1.0f)]

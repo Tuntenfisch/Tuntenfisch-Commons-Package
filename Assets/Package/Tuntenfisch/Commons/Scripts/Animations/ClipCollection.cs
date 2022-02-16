@@ -2,10 +2,10 @@
 
 namespace Tuntenfisch.Commons.Animations
 {
-    [CreateAssetMenu(fileName = "Clip Collection", menuName = "Tuntenfisch/Commons/Animations/New Clip Collection", order = 1)]
+    [CreateAssetMenu(fileName = "Clip Collection", menuName = "Tuntenfisch Commons/Animations/New Clip Collection", order = 1)]
     public class ClipCollection : ScriptableObject
     {
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private Clip[] m_clips;
         #endregion

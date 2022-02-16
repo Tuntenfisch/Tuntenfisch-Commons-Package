@@ -10,7 +10,7 @@ namespace Tuntenfisch.Commons.UI
     [RequireComponent(typeof(AspectRatioFitter))]
     public class AspectRatioLimiter : MonoBehaviour
     {
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private float m_maxAspectRatio = 16.0f / 9.0f;
         [Range(1, 60)]
@@ -18,7 +18,7 @@ namespace Tuntenfisch.Commons.UI
         private int m_validationFrequency = 5;
         #endregion
 
-        #region Private Variables
+        #region Private Fields
         private AspectRatioFitter m_aspectRatioFitter;
         private int m_delayInMilliseconds;
         private int2 m_oldScreenSize;
@@ -43,7 +43,7 @@ namespace Tuntenfisch.Commons.UI
         #region Private Methods
         private async UniTaskVoid LimitAspectRatio(CancellationToken token)
         {
-            while(!token.IsCancellationRequested)
+            while (!token.IsCancellationRequested)
             {
                 m_newScreenSize = new int2(Screen.width, Screen.height);
 

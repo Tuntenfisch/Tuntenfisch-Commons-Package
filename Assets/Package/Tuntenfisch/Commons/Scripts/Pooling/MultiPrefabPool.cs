@@ -7,7 +7,7 @@ namespace Tuntenfisch.Commons.Pooling
 {
     public class MultiPrefabPool
     {
-        #region Private Variables
+        #region Private Fields
         private Dictionary<GameObject, ObjectPool<GameObject>> m_pool = new Dictionary<GameObject, ObjectPool<GameObject>>();
         #endregion
 
@@ -46,7 +46,7 @@ namespace Tuntenfisch.Commons.Pooling
 
             if (pooledPrefab == null)
             {
-                Debug.LogWarning($"{nameof(GameObject)} \"{pooledInstance.name}\" is not a pooled {nameof(GameObject)}. Destroying it instead.");
+                Debug.LogWarning($"{nameof(GameObject)} is not a pooled {nameof(GameObject)}. Destroying it instead.", pooledInstance);
                 UnityEngine.Object.Destroy(pooledInstance);
 
                 return;

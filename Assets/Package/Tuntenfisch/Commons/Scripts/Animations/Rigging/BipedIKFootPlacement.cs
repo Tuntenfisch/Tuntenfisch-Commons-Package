@@ -7,7 +7,7 @@ namespace Tuntenfisch.Commons.Animations.Rigging
 {
     public class BipedIKFootPlacement : MonoBehaviour
     {
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private Animator m_animator;
         [Min(0.0f)]
@@ -46,7 +46,7 @@ namespace Tuntenfisch.Commons.Animations.Rigging
         private Color m_gizmosColor = Color.cyan;
         #endregion
 
-        #region Private Variables
+        #region Private Fields
         private float m_ankleHeight;
         #endregion
 

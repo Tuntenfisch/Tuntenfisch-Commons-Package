@@ -4,21 +4,21 @@ namespace Tuntenfisch.Commons.Attributes
 {
     public class MinMaxRangeAttribute : PropertyAttribute
     {
-        #region Public Variables
-        public float Min => m_min;
-        public float Max => m_max;
+        #region Public Properties
+        public float MinLimit => m_minLimit;
+        public float MaxLimit => m_maxLimit;
         #endregion
 
-        #region Private Variables
-        private float m_min;
-        private float m_max;
+        #region Private Fields
+        private float m_minLimit;
+        private float m_maxLimit;
         #endregion
 
         #region Public Methods
-        public MinMaxRangeAttribute(float min, float max)
+        public MinMaxRangeAttribute(float minLimit, float maxLimit)
         {
-            m_min = min;
-            m_max = max;
+            m_minLimit = minLimit;
+            m_maxLimit = maxLimit;
         }
         #endregion
     }

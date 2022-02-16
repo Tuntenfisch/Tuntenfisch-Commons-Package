@@ -6,8 +6,8 @@ namespace Tuntenfisch.Commons.Editor
 {
     public static class Handles
     {
-        #region Public Variables
-        public static GUIStyle s_centeredTextStyle;
+        #region Private Fields
+        private static GUIStyle s_centeredTextStyle;
         #endregion
 
         #region Public Methods
@@ -28,7 +28,6 @@ namespace Tuntenfisch.Commons.Editor
             {
                 return;
             }
-
             GUIContent content = new GUIContent(label);
             float2 contentSize = s_centeredTextStyle.CalcSize(content);
             float2 backgroundSize = new float2(1.1f, 1.25f) * contentSize;

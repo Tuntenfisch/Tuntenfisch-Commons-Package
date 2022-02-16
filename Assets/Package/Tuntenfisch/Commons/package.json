@@ -1,18 +1,18 @@
 {
 	"name": "com.tuntenfisch.commons",
-	"displayName": "Commons",
-	"description": "Package containing useful game-agnostic assets for various aspect such as animation, pooling, coupling or input.",
-	"version": "1.5.1",
+	"displayName": "Tuntenfisch Commons",
+	"description": "Useful game-agnostic assets for various aspect such as animation, pooling, coupling or input.",
+	"version": "1.6",
 	"unity": "2019.1",
 	"dependencies": {
 		"com.unity.animation.rigging": "1.1.1",
-		"com.unity.inputsystem": "1.2.0",
+		"com.unity.inputsystem": "1.3.0",
+		"com.unity.render-pipelines.universal": "12.1.4",
 		"com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.2.5"
 	},
 	"author": {
 		"name": "Tuntenfisch",
 		"url": "https://github.com/Tuntenfisch"
 	},
-	"licensesUrl": "https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package/blob/release/LICENSE",
-	"hideInEditor": false
+	"licensesUrl": "https://github.com/Tuntenfisch/Tuntenfisch-Commons-Package/blob/release/LICENSE"
 }

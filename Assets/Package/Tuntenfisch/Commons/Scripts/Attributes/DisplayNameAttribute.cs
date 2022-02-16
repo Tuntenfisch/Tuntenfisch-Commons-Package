@@ -4,11 +4,11 @@ namespace Tuntenfisch.Commons.Attributes
 {
     public class DisplayNameAttribute : PropertyAttribute
     {
-        #region Public Variables
+        #region Public Properties
         public string DisplayName => m_displayName;
         #endregion
 
-        #region Private Variables
+        #region Private Fields
         private string m_displayName;
         #endregion
 

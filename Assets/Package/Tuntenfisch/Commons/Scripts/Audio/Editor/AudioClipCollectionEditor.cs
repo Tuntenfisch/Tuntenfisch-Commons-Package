@@ -6,7 +6,7 @@ namespace Tuntenfisch.Commons.Audio.Editor
     [CustomEditor(typeof(AudioClipCollection), editorForChildClasses: true)]
     public class AudioClipCollectionEditor : UnityEditor.Editor
     {
-        #region Private Variables
+        #region Private Fields
         [SerializeField]
         private AudioSource m_audioPreviewSource;
         #endregion
@@ -24,6 +24,7 @@ namespace Tuntenfisch.Commons.Audio.Editor
 
         public override void OnInspectorGUI()
         {
+            serializedObject.Update();
             DrawDefaultInspector();
             EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
 
@@ -32,6 +33,7 @@ namespace Tuntenfisch.Commons.Audio.Editor
                 ((AudioClipCollection)target).Play(m_audioPreviewSource);
             }
             EditorGUI.EndDisabledGroup();
+            serializedObject.ApplyModifiedProperties();
         }
         #endregion
     }

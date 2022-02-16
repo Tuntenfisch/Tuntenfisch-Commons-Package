@@ -6,13 +6,13 @@ namespace Tuntenfisch.Commons.Animations
     [Serializable]
     public class Clip
     {
-        #region Public Variables
+        #region Public Properties
         public float SpeedMultiplier => m_animation.length / m_targetDuration;
         public AnimationClip Animation => m_animation;
         public float TargetDuration => m_targetDuration;
         #endregion
 
-        #region Inspector Variables
+        #region Inspector Fields
         [SerializeField]
         private AnimationClip m_animation;
         [SerializeField]
