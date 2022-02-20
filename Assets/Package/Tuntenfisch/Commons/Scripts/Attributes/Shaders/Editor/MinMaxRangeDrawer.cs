@@ -14,6 +14,7 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
         public override void OnGUI(Rect position, MaterialProperty property, string label, MaterialEditor editor)
         {
             EditorGUI.BeginChangeCheck();
+            EditorGUIUtility.labelWidth = 0.0f;
             float4 minMaxRange = property.vectorValue;
             Commons.Editor.EditorGUI.MinMaxRange(position, ref minMaxRange.x, ref minMaxRange.y, m_info.MinLimit, m_info.MaxLimit, new GUIContent(label));
 

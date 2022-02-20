@@ -20,7 +20,6 @@ Shader "Tuntenfisch/Commons/Misc/Copy Depth"
             #pragma vertex VertexPass
             #pragma fragment FragmentPass
 
-
             struct VertexPassInput
             {
                 float4 positionOS : POSITION;

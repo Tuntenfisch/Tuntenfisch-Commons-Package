@@ -34,7 +34,7 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
 
             if (!bool.TryParse(enabled, out m_enabled))
             {
-                string message = $"Invalid \"{nameof(enabled)}\" value supplied to ShowIf attribute. Value should be bool interpretable.";
+                string message = $"Invalid \"{nameof(enabled)}\" value supplied to ShowIf attribute. Value should be parsable as a bool.";
                 Debug.LogWarning(message);
                 throw new ArgumentException(message, nameof(enabled));
             }

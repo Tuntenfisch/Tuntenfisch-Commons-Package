@@ -60,34 +60,6 @@ namespace Tuntenfisch.Commons.Editor
                 // but that seems kind of wasteful to me.
                 m_materialPropertyGroups[groupName].AddPropertyByIndexReference(propertyIndex);
             }
-            // After the grouping some groups might end up only having one property in them. Having a foldout group with
-            // only one property in it looks kind of stupid, so find those groups and add their properties into a new misc group.
-            MaterialPropertyGroup miscGroup = new MaterialPropertyGroup("Misc");
-
-            foreach (MaterialPropertyGroup group in m_materialPropertyGroups.Values)
-            {
-                if (group.Size != 1)
-                {
-                    continue;
-                }
-                int propertyIndex = group.GetPropertyIndexReference(0);
-                miscGroup.AddPropertyByIndexReference(propertyIndex);
-            }
-
-            // If the size of the misc group is zero, no one property groups existed and we can return early.
-            if (miscGroup.Size == 0)
-            {
-                return;
-            }
-
-            // Finally we also need to remove those groups that have only one property in them.
-            for (int index = 0; index < miscGroup.Size; index++)
-            {
-                int propertyIndex = miscGroup.GetPropertyIndexReference(index);
-                MaterialProperty property = properties[propertyIndex];
-                m_materialPropertyGroups.Remove(GetGroupName(property));
-            }
-            m_materialPropertyGroups[miscGroup.GroupName] = miscGroup;
         }
         #endregion
 
