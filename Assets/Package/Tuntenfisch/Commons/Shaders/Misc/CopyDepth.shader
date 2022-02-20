@@ -7,6 +7,7 @@ Shader "Tuntenfisch/Commons/Misc/Copy Depth"
         HLSLINCLUDE
 
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
 
         ENDHLSL
 
@@ -50,9 +51,6 @@ Shader "Tuntenfisch/Commons/Misc/Copy Depth"
                 }
             };
 
-            TEXTURE2D(_CameraDepthTexture);
-            SAMPLER(sampler_CameraDepthTexture);
-
             FragmentPassInput VertexPass(VertexPassInput input)
             {
                 VertexPositionInputs positionInputs = GetVertexPositionInputs(input.positionOS.xyz);
@@ -61,7 +59,7 @@ Shader "Tuntenfisch/Commons/Misc/Copy Depth"
 
             float4 FragmentPass(FragmentPassInput input) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_CameraDepthTexture, input.uv).r;
+                return SampleSceneDepth(input.uv);
             }
 
             ENDHLSL

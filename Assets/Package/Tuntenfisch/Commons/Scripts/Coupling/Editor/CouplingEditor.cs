@@ -18,13 +18,7 @@ namespace Tuntenfisch.Commons.Coupling.Editor
         #region Unity Callbacks
         protected virtual void OnEnable()
         {
-            SceneView.duringSceneGui += OnSceneGUI;
             m_hasAccessFlagIcon = EditorGUIUtility.isProSkin ? EditorGUIUtility.IconContent("d_Valid@2x") : EditorGUIUtility.IconContent("Valid@2x");
-        }
-
-        protected virtual void OnDisable()
-        {
-            SceneView.duringSceneGui -= OnSceneGUI;
         }
 
         public override void OnInspectorGUI()
@@ -37,7 +31,7 @@ namespace Tuntenfisch.Commons.Coupling.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void OnSceneGUI(SceneView sceneView)
+        private void OnSceneGUI()
         {
             foreach ((GameObject gameObject, Reference reference) in from pair in m_references where pair.Key != null select pair)
             {

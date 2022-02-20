@@ -12,7 +12,7 @@ namespace Tuntenfisch.Commons.Attributes.Editor
         {
             ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
 
-            if (Show(property, showIfAttribute))
+            if (ShouldShow(property, showIfAttribute))
             {
                 EditorGUI.PropertyField(position, property, label);
             }
@@ -22,7 +22,7 @@ namespace Tuntenfisch.Commons.Attributes.Editor
         {
             ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
 
-            if (Show(property, showIfAttribute))
+            if (ShouldShow(property, showIfAttribute))
             {
                 return base.GetPropertyHeight(property, label);
             }
@@ -34,7 +34,7 @@ namespace Tuntenfisch.Commons.Attributes.Editor
         #endregion
 
         #region Private Methods
-        private bool Show(SerializedProperty property, ShowIfAttribute showIfAttribute)
+        private bool ShouldShow(SerializedProperty property, ShowIfAttribute showIfAttribute)
         {
             SerializedProperty serializedProperty = property.serializedObject.FindProperty(showIfAttribute.FieldName);
 
