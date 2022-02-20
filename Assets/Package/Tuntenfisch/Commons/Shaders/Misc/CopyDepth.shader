@@ -16,7 +16,7 @@ Shader "Tuntenfisch/Commons/Misc/Copy Depth"
             Name "Unlit"
 
             HLSLPROGRAM
-            #pragma multi_compile _ _MESH_CONTAINS_BLADE_PROPERTIES
+
             #pragma vertex VertexPass
             #pragma fragment FragmentPass
 

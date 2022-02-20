@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using System.Reflection;
-using UnityEngine.Rendering;
 
 namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
 {
@@ -12,35 +12,33 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
         #region Private Fields
         private string m_keyword;
         private bool m_enabled;
-        private FieldInfo m_propertyFlags;
         #endregion
 
         #region Unity Callbacks
         public override void OnGUI(Rect position, MaterialProperty property, string label, MaterialEditor editor)
         {
-            if (m_propertyFlags == null)
-            {
-                m_propertyFlags = property.GetType().GetField("m_Flags", BindingFlags.NonPublic | BindingFlags.Instance);
-            }
-            ShaderPropertyFlags propertyFlags = (ShaderPropertyFlags)m_propertyFlags.GetValue(property);
-
+            // This approach could break at any time if Unity decides to change their internal implementation of MaterialPropertyHandler:
+            // https://github.com/Unity-Technologies/UnityCsReference/blob/a048de916b23331bf6dfe92c4a6c205989b83b4f/Editor/Mono/Inspector/MaterialPropertyDrawer.cs
             if (ShouldShow(editor))
             {
-                propertyFlags &= ~ShaderPropertyFlags.HideInInspector;
+                Type type = typeof(MaterialPropertyDrawer).Assembly.GetType("UnityEditor.MaterialPropertyHandler");
+                FieldInfo fieldInfo = type.GetField("s_PropertyHandlers", BindingFlags.Static | BindingFlags.NonPublic);
+                IDictionary dictionary = fieldInfo.GetValue(null) as IDictionary;
+                dictionary.Remove((editor.target as Material).shader.GetInstanceID() + "_" + property.name);
             }
             else
             {
-                propertyFlags |= ShaderPropertyFlags.HideInInspector;
+                Type type = typeof(MaterialPropertyDrawer).Assembly.GetType("UnityEditor.MaterialPropertyHandler");
+                FieldInfo fieldInfo = type.GetField("s_PropertyHandlers", BindingFlags.Static | BindingFlags.NonPublic);
+                IDictionary dictionary = fieldInfo.GetValue(null) as IDictionary;
+                object propertyHandle = dictionary[(editor.target as Material).shader.GetInstanceID() + "_" + property.name];
+                FieldInfo propertyDrawer = propertyHandle.GetType().GetField("m_PropertyDrawer", BindingFlags.Instance | BindingFlags.NonPublic);
+                propertyDrawer.SetValue(propertyHandle, new EmptyDrawer());
             }
-            m_propertyFlags.SetValue(property, propertyFlags);
         }
 
         public override float GetPropertyHeight(MaterialProperty property, string label, MaterialEditor editor)
         {
-            if (!ShouldShow(editor))
-            {
-                return -base.GetPropertyHeight(property, label, editor) - EditorGUIUtility.standardVerticalSpacing;
-            }
             return 0.0f;
         }
         #endregion
@@ -71,5 +69,20 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
             return show;
         }
         #endregion
+
+        private class EmptyDrawer : MaterialPropertyDrawer
+        {
+            #region Unity Callbacks
+            public override void OnGUI(Rect position, MaterialProperty property, GUIContent label, MaterialEditor editor)
+            {
+
+            }
+
+            public override float GetPropertyHeight(MaterialProperty property, string label, MaterialEditor editor)
+            {
+                return -EditorGUIUtility.standardVerticalSpacing;
+            }
+            #endregion
+        }
     }
 }
