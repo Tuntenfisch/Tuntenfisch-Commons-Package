@@ -1,6 +1,8 @@
 ﻿#ifndef TUNTENFISCH_COMMONS_INCLUDE_UNITY
 #define TUNTENFISCH_COMMONS_INCLUDE_UNITY
 
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+
 // Basically same as Unity's implementation found here https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl.
 float4 TransformWorldToShadowHClip(float3 positionWS, float3 normalWS, float3 lightPositionWS, float3 lightDirectionWS)
 {
