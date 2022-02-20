@@ -6,7 +6,7 @@ namespace Tuntenfisch.Commons.Coupling
     public enum AccessFlags
     {
         Unkown = 0,
-        Read = 1,
-        Write = 2
+        Read = 1 << 0,
+        Write = 1 << 1
     }
 }

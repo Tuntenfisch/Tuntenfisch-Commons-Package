@@ -15,6 +15,10 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
         #region Unity Callbacks
         public override void OnGUI(Rect position, MaterialProperty property, string label, MaterialEditor editor)
         {
+            if ((property.flags & MaterialProperty.PropFlags.HideInInspector) == MaterialProperty.PropFlags.HideInInspector)
+            {
+                return;
+            }
             EditorGUI.BeginChangeCheck();
             float4 eulerAngles = property.vectorValue;
             eulerAngles.xyz = EditorGUI.Vector3Field(position, label, eulerAngles.xyz);

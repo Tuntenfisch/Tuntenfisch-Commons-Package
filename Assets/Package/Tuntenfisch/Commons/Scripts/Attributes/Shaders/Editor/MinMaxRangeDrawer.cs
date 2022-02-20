@@ -13,6 +13,10 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
         #region Unity Callbacks
         public override void OnGUI(Rect position, MaterialProperty property, string label, MaterialEditor editor)
         {
+            if ((property.flags & MaterialProperty.PropFlags.HideInInspector) == MaterialProperty.PropFlags.HideInInspector)
+            {
+                return;
+            }
             EditorGUI.BeginChangeCheck();
             EditorGUIUtility.labelWidth = 0.0f;
             float4 minMaxRange = property.vectorValue;

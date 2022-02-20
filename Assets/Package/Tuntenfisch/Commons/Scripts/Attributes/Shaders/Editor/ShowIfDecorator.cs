@@ -2,33 +2,51 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using System.Reflection;
+using UnityEngine.Rendering;
 
 namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
 {
-    public class ShowIfDrawer : MaterialPropertyDrawer
+    public class ShowIfDecorator : MaterialPropertyDrawer
     {
         #region Private Fields
         private string m_keyword;
         private bool m_enabled;
+        private FieldInfo m_propertyFlags;
         #endregion
 
         #region Unity Callbacks
         public override void OnGUI(Rect position, MaterialProperty property, string label, MaterialEditor editor)
         {
+            if (m_propertyFlags == null)
+            {
+                m_propertyFlags = property.GetType().GetField("m_Flags", BindingFlags.NonPublic | BindingFlags.Instance);
+            }
+            ShaderPropertyFlags propertyFlags = (ShaderPropertyFlags)m_propertyFlags.GetValue(property);
+
             if (ShouldShow(editor))
             {
-                editor.DefaultShaderProperty(property, label);
+                propertyFlags &= ~ShaderPropertyFlags.HideInInspector;
             }
+            else
+            {
+                propertyFlags |= ShaderPropertyFlags.HideInInspector;
+            }
+            m_propertyFlags.SetValue(property, propertyFlags);
         }
 
         public override float GetPropertyHeight(MaterialProperty property, string label, MaterialEditor editor)
         {
-            return -EditorGUIUtility.standardVerticalSpacing;
+            if (!ShouldShow(editor))
+            {
+                return -base.GetPropertyHeight(property, label, editor) - EditorGUIUtility.standardVerticalSpacing;
+            }
+            return 0.0f;
         }
         #endregion
 
         #region Public Methods
-        public ShowIfDrawer(string keyword, string enabled)
+        public ShowIfDecorator(string keyword, string enabled)
         {
             m_keyword = keyword;
 
