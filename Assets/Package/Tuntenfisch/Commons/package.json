@@ -2,7 +2,7 @@
 	"name": "com.tuntenfisch.commons",
 	"displayName": "Tuntenfisch Commons",
 	"description": "Useful game-agnostic assets for various aspect such as animation, pooling, coupling or input for URP.",
-	"version": "1.7.5",
+	"version": "1.7.6",
 	"unity": "2019.1",
 	"dependencies": {
 		"com.unity.animation.rigging": "1.1.1",

@@ -39,6 +39,7 @@ namespace Tuntenfisch.Commons.Editor
 
             for (int propertyIndex = 0; propertyIndex < properties.Length; propertyIndex++)
             {
+                MaterialProperty property = properties[propertyIndex];
                 string groupName = GetGroupName(properties[propertyIndex]);
 
                 if (!m_materialPropertyGroups.ContainsKey(groupName))
@@ -58,36 +59,16 @@ namespace Tuntenfisch.Commons.Editor
                 //
                 // We could add the properties directly if we call InitializeMaterialPropertyGroups every time OnGUI is called,
                 // but that seems kind of wasteful to me.
-                m_materialPropertyGroups[groupName].AddPropertyByIndexReference(propertyIndex);
-            }
-            // After the grouping some groups might end up only having one property in them. Having a foldout group with
-            // only one property in it looks kind of stupid, so find those groups and add their properties into a new misc group.
-            MaterialPropertyGroup miscGroup = new MaterialPropertyGroup("Misc");
 
-            foreach (MaterialPropertyGroup group in m_materialPropertyGroups.Values)
-            {
-                if (group.Size != 1)
+                // The HideInInspector attribute doesn't apply if a custom shader GUI is used.
+                // So we need to check if the attribute is present ourselves and if it is, we
+                // simply ignore the property it is attached to.
+                if ((property.flags & MaterialProperty.PropFlags.HideInInspector) != 0)
                 {
                     continue;
                 }
-                int propertyIndex = group.GetPropertyIndexReference(0);
-                miscGroup.AddPropertyByIndexReference(propertyIndex);
+                m_materialPropertyGroups[groupName].AddPropertyByIndexReference(propertyIndex);
             }
-
-            // If the size of the misc group is zero, no one property groups existed and we can return early.
-            if (miscGroup.Size == 0)
-            {
-                return;
-            }
-
-            // Finally we also need to remove those groups that have only one property in them.
-            for (int index = 0; index < miscGroup.Size; index++)
-            {
-                int propertyIndex = miscGroup.GetPropertyIndexReference(index);
-                MaterialProperty property = properties[propertyIndex];
-                m_materialPropertyGroups.Remove(GetGroupName(property));
-            }
-            m_materialPropertyGroups[miscGroup.GroupName] = miscGroup;
         }
         #endregion
 
@@ -129,14 +110,6 @@ namespace Tuntenfisch.Commons.Editor
                     foreach (int propertyIndex in m_propertyIndexReferences)
                     {
                         MaterialProperty property = properties[propertyIndex];
-
-                        // The HideInInspector attribute doesn't apply if a custom shader GUI is used.
-                        // So we need to check if the attribute is present ourselves and if it is, we
-                        // simply ignore the property it is attached to.
-                        if ((property.flags & MaterialProperty.PropFlags.HideInInspector) != 0)
-                        {
-                            continue;
-                        }
                         materialEditor.ShaderProperty(properties[propertyIndex], GetPropertyName(property));
                     }
                 }
