@@ -192,7 +192,8 @@ namespace Tuntenfisch.Commons.Editor
         {
             Rect controlRect = UnityEditor.EditorGUI.PrefixLabel(position, label);
             Rect variableRect = new Rect(controlRect.x, controlRect.y, controlRect.width - s_popupStyle.fixedWidth, EditorGUIUtility.singleLineHeight);
-            Rect buttonRect = new Rect(variableRect.xMax, controlRect.y, s_popupStyle.fixedWidth, variableRect.height);
+            float offset = 0.5f * (controlRect.height - s_popupStyle.fixedWidth);
+            Rect buttonRect = new Rect(variableRect.xMax, controlRect.y + offset, s_popupStyle.fixedWidth, variableRect.height);
 
             return (variableRect, buttonRect);
         }
