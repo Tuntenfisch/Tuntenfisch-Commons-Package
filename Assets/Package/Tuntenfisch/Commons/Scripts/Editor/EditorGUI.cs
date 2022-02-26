@@ -63,6 +63,46 @@ namespace Tuntenfisch.Commons.Editor
             UnityEditor.EditorGUI.EndDisabledGroup();
         }
 
+        public static int TextFieldWithPlaceholder(string label, ref string text, string placeholder)
+        {
+            Rect position = EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(EditorGUIUtility.singleLineHeight));
+            return TextFieldWithPlaceholder(position, label, ref text, placeholder);
+        }
+
+        public static int TextFieldWithPlaceholder(Rect position, string label, ref string text, string placeholder)
+        {
+            const string controlName = "EG6FL3Qjll7nyGOK";
+
+            int status = 0;
+
+            if (GUI.GetNameOfFocusedControl() == controlName && Event.current.type == EventType.KeyDown)
+            {
+                switch (Event.current.keyCode)
+                {
+                    case KeyCode.Escape:
+                        status = -1;
+                        break;
+
+                    case KeyCode.Return:
+                        status = 1;
+                        break;
+                }
+            }
+
+            GUI.SetNextControlName(controlName);
+            text = UnityEditor.EditorGUI.TextField(position, label, text);
+
+            if (string.IsNullOrEmpty(text))
+            {
+                Rect placeholderRect = new Rect(position.x + EditorGUIUtility.labelWidth + HorizontalPadding, position.y, position.width - EditorGUIUtility.labelWidth - HorizontalPadding, position.height);
+                Color guiColor = GUI.color;
+                GUI.color = Color.gray;
+                UnityEditor.EditorGUI.LabelField(placeholderRect, placeholder);
+                GUI.color = guiColor;
+            }
+            return status;
+        }
+
         public static bool LabeledArrayField(bool foldout, SerializedProperty array, string[] labels)
         {
             if (array.arraySize != labels.Length)
