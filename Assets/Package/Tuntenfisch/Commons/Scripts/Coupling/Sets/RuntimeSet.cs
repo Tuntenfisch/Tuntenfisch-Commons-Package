@@ -121,10 +121,12 @@ namespace Tuntenfisch.Commons.Coupling.Sets
         }
         #endregion
 
+        #region Private Structs, Classes and Enums
         private enum Operator
         {
             Add,
             Remove
         }
+        #endregion
     }
 }

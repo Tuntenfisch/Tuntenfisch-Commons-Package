@@ -63,34 +63,30 @@ namespace Tuntenfisch.Commons.Editor
             UnityEditor.EditorGUI.EndDisabledGroup();
         }
 
-        public static int TextFieldWithPlaceholder(string label, ref string text, string placeholder)
+        public static KeyCode TextFieldWithPlaceholder(string label, ref string text, string placeholder)
         {
             Rect position = EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(EditorGUIUtility.singleLineHeight));
             return TextFieldWithPlaceholder(position, label, ref text, placeholder);
         }
 
-        public static int TextFieldWithPlaceholder(Rect position, string label, ref string text, string placeholder)
+        public static KeyCode TextFieldWithPlaceholder(Rect position, string label, ref string text, string placeholder)
         {
             const string controlName = "EG6FL3Qjll7nyGOK";
 
-            int status = 0;
+            KeyCode keyCode = KeyCode.None;
 
-            if (GUI.GetNameOfFocusedControl() == controlName && Event.current.type == EventType.KeyDown)
+            if (Event.current.type == EventType.KeyDown)
             {
-                switch (Event.current.keyCode)
-                {
-                    case KeyCode.Escape:
-                        status = -1;
-                        break;
-
-                    case KeyCode.Return:
-                        status = 1;
-                        break;
-                }
+                keyCode = Event.current.keyCode;
             }
 
             GUI.SetNextControlName(controlName);
             text = UnityEditor.EditorGUI.TextField(position, label, text);
+
+            if (GUI.GetNameOfFocusedControl() != controlName)
+            {
+                keyCode = KeyCode.None;
+            }
 
             if (string.IsNullOrEmpty(text))
             {
@@ -100,7 +96,7 @@ namespace Tuntenfisch.Commons.Editor
                 UnityEditor.EditorGUI.LabelField(placeholderRect, placeholder);
                 GUI.color = guiColor;
             }
-            return status;
+            return keyCode;
         }
 
         public static bool LabeledArrayField(bool foldout, SerializedProperty array, string[] labels)

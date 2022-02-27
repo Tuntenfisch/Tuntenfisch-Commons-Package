@@ -179,6 +179,7 @@ namespace Tuntenfisch.Commons.Animations.Rigging
         }
         #endregion
 
+        #region Private Structs, Classes and Enums
         [Serializable]
         private class IKFoot
         {
@@ -193,5 +194,6 @@ namespace Tuntenfisch.Commons.Animations.Rigging
             [SerializeField]
             private string m_weightCurveName;
         }
+        #endregion
     }
 }

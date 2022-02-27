@@ -6,9 +6,12 @@ namespace Tuntenfisch.Commons.Animations.Editor
     [CustomPropertyDrawer(typeof(Clip))]
     public class ClipDrawer : PropertyDrawer
     {
+        #region Private Fields
         SerializedProperty m_animationProperty;
         SerializedProperty m_targetDurationProperty;
+        #endregion
 
+        #region Unity Callbacks
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (m_animationProperty == null)
@@ -36,11 +39,14 @@ namespace Tuntenfisch.Commons.Animations.Editor
             EditorGUI.PropertyField(targetDurationRect, m_targetDurationProperty, GUIContent.none);
             EditorGUI.EndProperty();
         }
+        #endregion
 
+        #region Private Methods
         private void Initialize(SerializedProperty property)
         {
             m_animationProperty = property.FindPropertyRelative("m_animation");
             m_targetDurationProperty = property.FindPropertyRelative("m_targetDuration");
         }
+        #endregion
     }
 }

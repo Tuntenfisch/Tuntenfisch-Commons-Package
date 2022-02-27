@@ -10,6 +10,7 @@ namespace Tuntenfisch.Commons.Extensions
 {
     public static class Texture2DExtensions
     {
+        #region Public Methods
         public static void InsertColumn(this Texture2D texture, int columnIndex, Color color)
         {
             InsertColumn(texture, columnIndex, Enumerable.Repeat(color, texture.height).ToArray());
@@ -72,5 +73,6 @@ namespace Tuntenfisch.Commons.Extensions
             }
         }
 #endif
+        #endregion
     }
 }

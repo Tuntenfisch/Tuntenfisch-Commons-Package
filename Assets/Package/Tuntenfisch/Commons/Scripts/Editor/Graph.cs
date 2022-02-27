@@ -8,6 +8,7 @@ namespace Tuntenfisch.Commons.Editor
 {
     public class Graph
     {
+        #region Public Properties
         public float this[int valueIndex]
         {
             get
@@ -29,7 +30,6 @@ namespace Tuntenfisch.Commons.Editor
             }
         }
 
-        #region Public Properties
         public int ValueCount => m_values.Length;
         #endregion
 
@@ -271,13 +271,16 @@ namespace Tuntenfisch.Commons.Editor
         }
         #endregion
 
+        #region Public Structs, Classes and Enums
         public enum GraphFlags
         {
             None = 0,
             ReadOnly = 1,
             Dirty = 2
         }
+        #endregion
 
+        #region Public Structs, Classes and Enums
         private static class StaticStyle
         {
             #region Public Fields
@@ -295,5 +298,6 @@ namespace Tuntenfisch.Commons.Editor
                 HandleTexture = EditorGUIUtility.FindTexture("CrossIcon");
             }
         }
+        #endregion
     }
 }

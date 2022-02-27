@@ -48,11 +48,13 @@ namespace Tuntenfisch.Commons.Coupling.Variables
         }
         #endregion
 
+        #region Public Structs, Classes and Enums
         public enum VariableType
         {
             Camera,
             GameObject,
             Transform
         }
+        #endregion
     }
 }

@@ -15,12 +15,17 @@ namespace Tuntenfisch.Commons.Animations.Rigging
 
     public struct ExtractTransformConstraintJob : IWeightedAnimationJob
     {
+        #region Public Properties
         public FloatProperty jobWeight { get; set; }
+        #endregion
 
+        #region Public Fields
         public ReadWriteTransformHandle m_transformHandle;
         public Vector3Property m_position;
         public Vector4Property m_rotation;
+        #endregion
 
+        #region Public Methods
         public void ProcessRootMotion(AnimationStream stream)
         {
 
@@ -36,18 +41,22 @@ namespace Tuntenfisch.Commons.Animations.Rigging
             m_position.Set(stream, position);
             m_rotation.Set(stream, new Vector4(rotation.x, rotation.y, rotation.z, rotation.w));
         }
+        #endregion
     }
 
     [Serializable]
     public struct ExtractTransformConstraintData : IAnimationJobData
     {
+        #region Public Fields
         [SyncSceneToStream]
         public Transform m_bone;
         [HideInInspector]
         public float3 m_position;
         [HideInInspector]
         public Quaternion m_rotation;
+        #endregion
 
+        #region Public Methods
         public bool IsValid()
         {
             return m_bone != null;
@@ -59,10 +68,12 @@ namespace Tuntenfisch.Commons.Animations.Rigging
             m_position = 0.0f;
             m_rotation = Quaternion.identity;
         }
+        #endregion
     }
 
     public class ExtractTransformConstraintJobBinder : AnimationJobBinder<ExtractTransformConstraintJob, ExtractTransformConstraintData>
     {
+        #region Public Methods
         public override ExtractTransformConstraintJob Create(Animator animator, ref ExtractTransformConstraintData data, Component component)
         {
             return new ExtractTransformConstraintJob
@@ -77,5 +88,6 @@ namespace Tuntenfisch.Commons.Animations.Rigging
         {
 
         }
+        #endregion
     }
 }

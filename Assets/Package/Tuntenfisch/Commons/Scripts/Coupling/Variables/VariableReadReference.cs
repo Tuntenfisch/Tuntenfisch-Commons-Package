@@ -22,7 +22,7 @@ namespace Tuntenfisch.Commons.Coupling.Variables
         }
         #endregion
 
-                #region Protected Properties
+        #region Protected Properties
         protected override Variable<T> Variable => m_variable;
         #endregion
 

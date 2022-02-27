@@ -5,6 +5,7 @@ namespace Tuntenfisch.Commons.Pooling
 {
     public class UnknownPooledPrefabException : Exception
     {
+        #region Public Methods
         public UnknownPooledPrefabException()
         {
 
@@ -24,5 +25,6 @@ namespace Tuntenfisch.Commons.Pooling
         {
 
         }
+        #endregion
     }
 }

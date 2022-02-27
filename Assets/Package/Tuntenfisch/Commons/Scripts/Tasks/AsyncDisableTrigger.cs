@@ -43,9 +43,11 @@ namespace Tuntenfisch.Commons.Tasks
 
     public static partial class AsyncTriggerExtensions
     {
+        #region Public Methods
         public static CancellationToken GetCancellationTokenOnDisable(this GameObject gameObject)
         {
             return GetOrAddComponent<AsyncDisableTrigger>(gameObject).Token;
         }
+        #endregion
     }
 }

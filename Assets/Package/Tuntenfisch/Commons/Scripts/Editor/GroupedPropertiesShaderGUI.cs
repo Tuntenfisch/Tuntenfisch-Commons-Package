@@ -72,6 +72,7 @@ namespace Tuntenfisch.Commons.Editor
         }
         #endregion
 
+        #region Private Structs, Classes and Enums
         private class MaterialPropertyGroup
         {
             #region Public Properties
@@ -130,5 +131,6 @@ namespace Tuntenfisch.Commons.Editor
             }
             #endregion
         }
+        #endregion
     }
 }

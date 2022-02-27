@@ -136,8 +136,10 @@ namespace Tuntenfisch.Commons.Coupling.Editor
         }
         #endregion
 
+        #region Private Structs, Classes and Enums
         private class Reference
         {
+            #region Public Properties
             public AccessFlags AccessFlags
             {
                 get => m_accessFlags;
@@ -150,10 +152,14 @@ namespace Tuntenfisch.Commons.Coupling.Editor
             }
 
             public Color LabelColor => m_labelColor;
+            #endregion
 
+            #region Private Fields
             private AccessFlags m_accessFlags;
             private Color m_labelColor;
+            #endregion
 
+            #region Private Methods
             private Color GetLabelColor(AccessFlags accessFlags)
             {
                 return accessFlags switch
@@ -163,6 +169,8 @@ namespace Tuntenfisch.Commons.Coupling.Editor
                     _ => new Color(0.0f, 1.0f, 0.0f, 0.75f),
                 };
             }
+            #endregion
         }
+        #endregion
     }
 }
