@@ -88,9 +88,11 @@ namespace Tuntenfisch.Commons.Editor
                 keyCode = KeyCode.None;
             }
 
+            float labelWidth = string.IsNullOrEmpty(label) ? 0.0f : EditorGUIUtility.labelWidth;
+
             if (string.IsNullOrEmpty(text))
             {
-                Rect placeholderRect = new Rect(position.x + EditorGUIUtility.labelWidth + HorizontalPadding, position.y, position.width - EditorGUIUtility.labelWidth - HorizontalPadding, position.height);
+                Rect placeholderRect = new Rect(position.x + labelWidth + HorizontalPadding, position.y, position.width - labelWidth - HorizontalPadding, position.height);
                 Color guiColor = GUI.color;
                 GUI.color = Color.gray;
                 UnityEditor.EditorGUI.LabelField(placeholderRect, placeholder);
