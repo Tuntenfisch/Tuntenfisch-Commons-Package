@@ -88,7 +88,7 @@ namespace Tuntenfisch.Commons.Editor
                 keyCode = KeyCode.None;
             }
 
-            float labelWidth = string.IsNullOrEmpty(label) ? 0.0f : EditorGUIUtility.labelWidth + HorizontalPadding;
+            float labelWidth = string.IsNullOrEmpty(label) ? 0.5f * HorizontalPadding : EditorGUIUtility.labelWidth + HorizontalPadding;
 
             if (string.IsNullOrEmpty(text))
             {
