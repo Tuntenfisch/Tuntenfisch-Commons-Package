@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Tuntenfisch.Commons.Coupling.Attributes;
+using Tuntenfisch.Commons.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,20 +12,13 @@ namespace Tuntenfisch.Commons.Coupling.Editor
     {
         #region Private Fields
         private Dictionary<GameObject, Reference> m_references = new Dictionary<GameObject, Reference>();
-        private GUIContent m_hasAccessFlagIcon;
-        private GUIStyle m_centeredBoldLabelStyle;
         #endregion
 
         #region Unity Callbacks
-        protected virtual void OnEnable()
-        {
-            m_hasAccessFlagIcon = EditorGUIUtility.isProSkin ? EditorGUIUtility.IconContent("d_Valid@2x") : EditorGUIUtility.IconContent("Valid@2x");
-        }
-
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            Commons.Editor.EditorGUI.ScriptHeaderField(serializedObject);
+            Commons.Editor.EditorGUILayout.ScriptHeaderField(serializedObject);
             DisplayInspectorVariables();
             DisplayFindInSceneButton();
             DisplayReferences();
@@ -47,7 +41,7 @@ namespace Tuntenfisch.Commons.Coupling.Editor
         #region Private Methods
         private AccessFlags GetAccessFlags(SerializedProperty property)
         {
-            AccessHintAttribute accessHintAttribute = Commons.Editor.EditorGUI.GetAttribute<AccessHintAttribute>(property);
+            AccessHintAttribute accessHintAttribute = property.GetAttribute<AccessHintAttribute>();
 
             return accessHintAttribute != null ? accessHintAttribute.AccessFlags : AccessFlags.Unkown;
         }
@@ -107,31 +101,25 @@ namespace Tuntenfisch.Commons.Coupling.Editor
         {
             if (m_references.Count != 0)
             {
-                if (m_centeredBoldLabelStyle == null)
-                {
-                    m_centeredBoldLabelStyle = new GUIStyle(GUI.skin.label);
-                    m_centeredBoldLabelStyle.alignment = TextAnchor.MiddleCenter;
-                    m_centeredBoldLabelStyle.fontStyle = FontStyle.Bold;
-                }
-                EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-                GUILayoutOption smallColumnWidth = GUILayout.Width(0.25f * Commons.Editor.EditorGUI.Width);
-                GUILayoutOption largeColumnWidth = GUILayout.Width(0.5f * Commons.Editor.EditorGUI.Width);
-                GUILayoutOption rowHeight = GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight);
-                EditorGUILayout.BeginHorizontal();
-                GUILayout.Label(ObjectNames.NicifyVariableName(nameof(GameObject)), m_centeredBoldLabelStyle, largeColumnWidth, rowHeight);
-                GUILayout.Label(nameof(AccessFlags.Read), m_centeredBoldLabelStyle, smallColumnWidth, rowHeight);
-                GUILayout.Label(nameof(AccessFlags.Write), m_centeredBoldLabelStyle, smallColumnWidth, rowHeight);
-                EditorGUILayout.EndHorizontal();
+                UnityEditor.EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                GUILayoutOption smallColumnWidth = GUILayout.Width(0.25f * Commons.Editor.EditorGUIUtility.AvailableHorizontalWidth);
+                GUILayoutOption largeColumnWidth = GUILayout.Width(0.5f * Commons.Editor.EditorGUIUtility.AvailableHorizontalWidth);
+                GUILayoutOption rowHeight = GUILayout.MaxHeight(UnityEditor.EditorGUIUtility.singleLineHeight);
+                UnityEditor.EditorGUILayout.BeginHorizontal();
+                GUILayout.Label(ObjectNames.NicifyVariableName(nameof(GameObject)), EditorGUIStyles.CenteredBoldLabelStyle, largeColumnWidth, rowHeight);
+                GUILayout.Label(nameof(AccessFlags.Read), EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
+                GUILayout.Label(nameof(AccessFlags.Write), EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
+                UnityEditor.EditorGUILayout.EndHorizontal();
 
                 foreach ((GameObject gameObject, Reference reference) in from pair in m_references where pair.Key != null select pair)
                 {
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.ObjectField(GUIContent.none, gameObject, typeof(GameObject), false, largeColumnWidth, rowHeight);
-                    GUILayout.Label((reference.AccessFlags & AccessFlags.Read) == AccessFlags.Read ? m_hasAccessFlagIcon : GUIContent.none, m_centeredBoldLabelStyle, smallColumnWidth, rowHeight);
-                    GUILayout.Label((reference.AccessFlags & AccessFlags.Write) == AccessFlags.Write ? m_hasAccessFlagIcon : GUIContent.none, m_centeredBoldLabelStyle, smallColumnWidth, rowHeight);
-                    EditorGUILayout.EndHorizontal();
+                    UnityEditor.EditorGUILayout.BeginHorizontal();
+                    UnityEditor.EditorGUILayout.ObjectField(GUIContent.none, gameObject, typeof(GameObject), false, largeColumnWidth, rowHeight);
+                    GUILayout.Label((reference.AccessFlags & AccessFlags.Read) == AccessFlags.Read ? EditorGUIIcons.CheckMark : GUIContent.none, EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
+                    GUILayout.Label((reference.AccessFlags & AccessFlags.Write) == AccessFlags.Write ? EditorGUIIcons.CheckMark : GUIContent.none, EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
+                    UnityEditor.EditorGUILayout.EndHorizontal();
                 }
-                EditorGUILayout.EndVertical();
+                UnityEditor.EditorGUILayout.EndVertical();
             }
         }
         #endregion

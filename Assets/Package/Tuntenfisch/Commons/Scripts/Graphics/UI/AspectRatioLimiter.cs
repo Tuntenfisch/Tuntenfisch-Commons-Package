@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Tuntenfisch.Commons.UI
+namespace Tuntenfisch.Commons.Graphics.UI
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(AspectRatioFitter))]

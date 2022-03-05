@@ -6,7 +6,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Tuntenfisch.Commons.Extensions
+namespace Tuntenfisch.Commons.Graphics
 {
     public static class Texture2DExtensions
     {

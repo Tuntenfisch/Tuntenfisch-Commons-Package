@@ -106,7 +106,7 @@ namespace Tuntenfisch.Commons.Editor
 
             public void DrawPropertiesInGroup(MaterialEditor materialEditor, MaterialProperty[] properties)
             {
-                if (m_expanded = EditorGUILayout.BeginFoldoutHeaderGroup(m_expanded, m_groupName))
+                if (m_expanded = UnityEditor.EditorGUILayout.BeginFoldoutHeaderGroup(m_expanded, m_groupName))
                 {
                     foreach (int propertyIndex in m_propertyIndexReferences)
                     {
@@ -114,7 +114,7 @@ namespace Tuntenfisch.Commons.Editor
                         materialEditor.ShaderProperty(properties[propertyIndex], GetPropertyName(property));
                     }
                 }
-                EditorGUILayout.EndFoldoutHeaderGroup();
+                UnityEditor.EditorGUILayout.EndFoldoutHeaderGroup();
             }
             #endregion
 

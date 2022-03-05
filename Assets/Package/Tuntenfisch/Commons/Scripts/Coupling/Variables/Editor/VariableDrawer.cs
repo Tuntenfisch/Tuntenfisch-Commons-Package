@@ -9,7 +9,7 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
         #region Unity Callbacks
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            Commons.Editor.EditorGUI.GenericObjectField(position, property, fieldInfo.FieldType, label);
+            Commons.Editor.EditorGUI.GenericObjectField(position, label, property, fieldInfo.FieldType);
         }
         #endregion
     }

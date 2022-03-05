@@ -3,7 +3,7 @@ using Tuntenfisch.Commons.Attributes;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Tuntenfisch.Commons.URP
+namespace Tuntenfisch.Commons.Graphics.URP
 {
     // Based on https://gist.github.com/alexanderameye/20914089079069eaeb144c1e17821aa3.
     public class CopyDepthBufferFeature : ScriptableRendererFeature

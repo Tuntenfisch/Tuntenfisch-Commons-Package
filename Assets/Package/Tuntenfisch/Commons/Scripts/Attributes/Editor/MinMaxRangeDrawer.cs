@@ -22,7 +22,7 @@ namespace Tuntenfisch.Commons.Attributes.Editor
                 float minRange = minRangeProperty.floatValue;
                 float maxRange = maxRangeProperty.floatValue;
                 MinMaxRangeAttribute minMaxRangeAttribute = attribute as MinMaxRangeAttribute;
-                Commons.Editor.EditorGUI.MinMaxRange(position, ref minRange, ref maxRange, minMaxRangeAttribute.MinLimit, minMaxRangeAttribute.MaxLimit, label);
+                Commons.Editor.EditorGUI.MinMaxRange(position, label, ref minRange, ref maxRange, minMaxRangeAttribute.MinLimit, minMaxRangeAttribute.MaxLimit);
 
                 if (EditorGUI.EndChangeCheck())
                 {

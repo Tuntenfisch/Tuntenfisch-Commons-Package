@@ -1,7 +1,7 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace Tuntenfisch.Commons.Extensions
+namespace Tuntenfisch.Commons.Graphics
 {
     public static class CameraExtensions 
     {

@@ -94,7 +94,7 @@ namespace Tuntenfisch.Commons.Editor
         #region Private Methods
         private void OnGraphGUI()
         {
-            Rect graphGroupRect = EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(StaticStyle.Height));
+            Rect graphGroupRect = UnityEditor.EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(StaticStyle.Height));
             Rect graphRect = new Rect(StaticStyle.Padding, (float2)graphGroupRect.size - 2.0f * StaticStyle.Padding);
             Rect graphViewRect = new Rect((float2)graphRect.min + new float2(m_positiveCoordinateLabelSize.x, 0.0f), (float2)graphRect.size - m_positiveCoordinateLabelSize);
             GUI.BeginGroup(graphGroupRect);
@@ -295,7 +295,7 @@ namespace Tuntenfisch.Commons.Editor
 
             static StaticStyle()
             {
-                HandleTexture = EditorGUIUtility.FindTexture("CrossIcon");
+                HandleTexture = UnityEditor.EditorGUIUtility.FindTexture("CrossIcon");
             }
         }
         #endregion

@@ -2,7 +2,7 @@
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Tuntenfisch.Commons.URP
+namespace Tuntenfisch.Commons.Graphics.URP
 {
     // Based on https://gist.github.com/alexanderameye/bb4ec2798a2d101ad505ce4f7a0f58f4.
     public class CopyDepthBufferPass : ScriptableRenderPass

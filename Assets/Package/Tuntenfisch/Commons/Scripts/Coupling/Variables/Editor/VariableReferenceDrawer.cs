@@ -62,14 +62,14 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
         private Rect GetPropertyRect(Rect position)
         {
             float offset = EditorGUIUtility.standardVerticalSpacing + EditorGUIUtility.singleLineHeight;
-            return Commons.Editor.EditorGUI.GetIndentedRect(EditorGUI.indentLevel + 1, new Rect(position.x, position.y + offset, position.width, position.height - offset));
+            return Commons.Editor.EditorGUI.GetIndentedRect(new Rect(position.x, position.y + offset, position.width, position.height - offset), EditorGUI.indentLevel + 1);
         }
 
         private void DisplayVariableProperty(SerializedProperty property, Rect position, GUIContent label)
         {
             EditorGUI.BeginChangeCheck();
             int selectedPopupOption = m_useLiteralProperty.boolValue ? 0 : 1;
-            selectedPopupOption = Commons.Editor.EditorGUI.PropertyFieldWithPopupOptions(position, m_useLiteralProperty.boolValue ? null : m_variableProperty, label, s_popupOptions, selectedPopupOption);
+            selectedPopupOption = Commons.Editor.EditorGUI.PropertyFieldWithPopupOptions(position, label, m_useLiteralProperty.boolValue ? null : m_variableProperty, selectedPopupOption, s_popupOptions);
 
             if (EditorGUI.EndChangeCheck())
             {

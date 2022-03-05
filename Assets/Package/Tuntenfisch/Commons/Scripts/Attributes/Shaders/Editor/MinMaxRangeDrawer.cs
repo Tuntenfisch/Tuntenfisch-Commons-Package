@@ -16,7 +16,7 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
             EditorGUI.BeginChangeCheck();
             EditorGUIUtility.labelWidth = 0.0f;
             float4 minMaxRange = property.vectorValue;
-            Commons.Editor.EditorGUI.MinMaxRange(position, ref minMaxRange.x, ref minMaxRange.y, m_info.MinLimit, m_info.MaxLimit, new GUIContent(label));
+            Commons.Editor.EditorGUI.MinMaxRange(position, new GUIContent(label), ref minMaxRange.x, ref minMaxRange.y, m_info.MinLimit, m_info.MaxLimit);
 
             if (EditorGUI.EndChangeCheck())
             {

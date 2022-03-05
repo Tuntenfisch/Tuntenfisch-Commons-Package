@@ -18,10 +18,8 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
         #endregion
 
         #region Unity Callbacks
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
-
             m_defaultValueProperty = serializedObject.FindProperty("m_defaultValue");
             m_currentValueProperty = serializedObject.FindProperty("m_currentValue");
             m_isConstantProperty = serializedObject.FindProperty("m_isConstant");
