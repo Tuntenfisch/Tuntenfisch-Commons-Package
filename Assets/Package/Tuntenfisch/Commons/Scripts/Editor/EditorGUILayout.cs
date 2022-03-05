@@ -1,6 +1,6 @@
-﻿using UnityEditor;
+﻿using System.Linq;
+using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 namespace Tuntenfisch.Commons.Editor
 {
@@ -74,10 +74,10 @@ namespace Tuntenfisch.Commons.Editor
 
         public static int PaneOptions(int selectedPaneOptionIndex, string[] popupOptions, params GUILayoutOption[] options)
         {
+            options = options.Concat(Enumerable.Repeat(GUILayout.Width(EditorGUIStyles.PaneOptionsSytle.fixedWidth), 1)).ToArray();
             Rect position = UnityEditor.EditorGUILayout.GetControlRect(options);
             return EditorGUI.PaneOptions(position, selectedPaneOptionIndex, popupOptions);
         }
-
         #endregion
     }
 }
