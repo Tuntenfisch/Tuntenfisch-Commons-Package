@@ -24,7 +24,7 @@ namespace Tuntenfisch.Commons.Editor
             RightArrowIcon = UnityEditor.EditorGUIUtility.IconContent("tab_next");
             PlusIcon = UnityEditor.EditorGUIUtility.IconContent("Toolbar Plus");
             MinusIcon = UnityEditor.EditorGUIUtility.IconContent("Toolbar Minus");
-            SaveIcon = UnityEditor.EditorGUIUtility.IconContent("Toolbar Minus");
+            SaveIcon = UnityEditor.EditorGUIUtility.IconContent("SaveAs");
             CheckMarkIcon = UnityEditor.EditorGUIUtility.IconContent("Valid@2x");
         }
     }
