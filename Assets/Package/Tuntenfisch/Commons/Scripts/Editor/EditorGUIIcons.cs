@@ -6,26 +6,26 @@ namespace Tuntenfisch.Commons.Editor
     public static class EditorGUIIcons
     {
         #region Public Properties
-        public static float2 IconSize => GUI.skin.button.CalcSize(LeftArrow);
+        public static float2 IconSize => GUI.skin.button.CalcSize(LeftArrowIcon);
         #endregion
 
         #region Public Fields
-        public static readonly GUIContent LeftArrow;
-        public static readonly GUIContent RightArrow;
-        public static readonly GUIContent Plus;
-        public static readonly GUIContent Minus;
-        public static readonly GUIContent Save;
-        public static readonly GUIContent CheckMark;
+        public static readonly GUIContent LeftArrowIcon;
+        public static readonly GUIContent RightArrowIcon;
+        public static readonly GUIContent PlusIcon;
+        public static readonly GUIContent MinusIcon;
+        public static readonly GUIContent SaveIcon;
+        public static readonly GUIContent CheckMarkIcon;
         #endregion
 
         static EditorGUIIcons()
         {
-            LeftArrow = UnityEditor.EditorGUIUtility.IconContent("tab_prev");
-            RightArrow = UnityEditor.EditorGUIUtility.IconContent("tab_next");
-            Plus = UnityEditor.EditorGUIUtility.IconContent("Toolbar Plus");
-            Minus = UnityEditor.EditorGUIUtility.IconContent("Toolbar Minus");
-            Save = UnityEditor.EditorGUIUtility.IconContent("Toolbar Minus");
-            CheckMark = UnityEditor.EditorGUIUtility.IconContent("Valid@2x");
+            LeftArrowIcon = UnityEditor.EditorGUIUtility.IconContent("tab_prev");
+            RightArrowIcon = UnityEditor.EditorGUIUtility.IconContent("tab_next");
+            PlusIcon = UnityEditor.EditorGUIUtility.IconContent("Toolbar Plus");
+            MinusIcon = UnityEditor.EditorGUIUtility.IconContent("Toolbar Minus");
+            SaveIcon = UnityEditor.EditorGUIUtility.IconContent("Toolbar Minus");
+            CheckMarkIcon = UnityEditor.EditorGUIUtility.IconContent("Valid@2x");
         }
     }
 }

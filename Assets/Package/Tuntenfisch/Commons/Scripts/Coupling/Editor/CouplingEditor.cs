@@ -115,8 +115,8 @@ namespace Tuntenfisch.Commons.Coupling.Editor
                 {
                     UnityEditor.EditorGUILayout.BeginHorizontal();
                     UnityEditor.EditorGUILayout.ObjectField(GUIContent.none, gameObject, typeof(GameObject), false, largeColumnWidth, rowHeight);
-                    GUILayout.Label((reference.AccessFlags & AccessFlags.Read) == AccessFlags.Read ? EditorGUIIcons.CheckMark : GUIContent.none, EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
-                    GUILayout.Label((reference.AccessFlags & AccessFlags.Write) == AccessFlags.Write ? EditorGUIIcons.CheckMark : GUIContent.none, EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
+                    GUILayout.Label((reference.AccessFlags & AccessFlags.Read) == AccessFlags.Read ? EditorGUIIcons.CheckMarkIcon : GUIContent.none, EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
+                    GUILayout.Label((reference.AccessFlags & AccessFlags.Write) == AccessFlags.Write ? EditorGUIIcons.CheckMarkIcon : GUIContent.none, EditorGUIStyles.CenteredBoldLabelStyle, smallColumnWidth, rowHeight);
                     UnityEditor.EditorGUILayout.EndHorizontal();
                 }
                 UnityEditor.EditorGUILayout.EndVertical();

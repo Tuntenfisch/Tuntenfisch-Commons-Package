@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 namespace Tuntenfisch.Commons.Editor
 {
@@ -71,9 +72,9 @@ namespace Tuntenfisch.Commons.Editor
             return EditorGUI.PropertyFieldWithPopupOptions(position, label, property, selectedPopupOption, popupOptions);
         }
 
-        public static int PaneOptions(int selectedPaneOptionIndex, string[] popupOptions, float? height = null)
+        public static int PaneOptions(int selectedPaneOptionIndex, string[] popupOptions, params GUILayoutOption[] options)
         {
-            Rect position = UnityEditor.EditorGUILayout.GetControlRect(false, height.GetValueOrDefault(UnityEditor.EditorGUIUtility.singleLineHeight), GUILayout.Width(EditorGUIStyles.PaneOptionsSytle.fixedWidth));
+            Rect position = UnityEditor.EditorGUILayout.GetControlRect(options);
             return EditorGUI.PaneOptions(position, selectedPaneOptionIndex, popupOptions);
         }
 
