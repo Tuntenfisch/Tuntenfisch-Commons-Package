@@ -25,10 +25,11 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
             {
                 Initialize(property);
             }
-            Rect propertyRect = GetPropertyRect(position);
-            DisplayVariableProperty(property, position, label);
-            EditorGUIUtility.labelWidth -= position.width - propertyRect.width;
-            DisplayValueProperty(propertyRect);
+            Rect variableRect = GetVariableRect(position);
+            DisplayVariableProperty(property, variableRect, label);
+            Rect valueRect = GetValueRect(position);
+            EditorGUIUtility.labelWidth -= position.width - valueRect.width;
+            DisplayValueProperty(valueRect);
             EditorGUIUtility.labelWidth = 0.0f;
         }
 
@@ -38,14 +39,15 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
             {
                 Initialize(property);
             }
+            float height = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
             if (m_useLiteralProperty.boolValue)
             {
-                return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + EditorGUI.GetPropertyHeight(m_literalValueProperty);
+                return height + EditorGUI.GetPropertyHeight(m_literalValueProperty);
             }
             else if (m_variableProperty.objectReferenceValue != null)
             {
-                return EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + EditorGUI.GetPropertyHeight(new SerializedObject(m_variableProperty.objectReferenceValue).FindProperty("m_currentValue"));
+                return height + EditorGUI.GetPropertyHeight(new SerializedObject(m_variableProperty.objectReferenceValue).FindProperty("m_currentValue"));
             }
             return base.GetPropertyHeight(property, label);
         }
@@ -59,17 +61,16 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
             m_useLiteralProperty = property.FindPropertyRelative("m_useLiteral");
         }
 
-        private Rect GetPropertyRect(Rect position)
+        private Rect GetVariableRect(Rect position)
         {
-            float offset = EditorGUIUtility.standardVerticalSpacing + EditorGUIUtility.singleLineHeight;
-            return Commons.Editor.EditorGUI.GetIndentedRect(new Rect(position.x, position.y + offset, position.width, position.height - offset), EditorGUI.indentLevel + 1);
+            return new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
         }
 
-        private void DisplayVariableProperty(SerializedProperty property, Rect position, GUIContent label)
+        private void DisplayVariableProperty(SerializedProperty property, Rect variableRect, GUIContent label)
         {
             EditorGUI.BeginChangeCheck();
             int selectedPopupOption = m_useLiteralProperty.boolValue ? 0 : 1;
-            selectedPopupOption = Commons.Editor.EditorGUI.PropertyFieldWithPopupOptions(position, label, m_useLiteralProperty.boolValue ? null : m_variableProperty, selectedPopupOption, s_popupOptions);
+            selectedPopupOption = Commons.Editor.EditorGUI.PropertyFieldWithPopupOptions(variableRect, label, m_useLiteralProperty.boolValue ? null : m_variableProperty, selectedPopupOption, s_popupOptions);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -78,11 +79,17 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
             }
         }
 
-        private void DisplayValueProperty(Rect propertyRect)
+        private Rect GetValueRect(Rect position)
+        {
+            float offset = EditorGUIUtility.standardVerticalSpacing + EditorGUIUtility.singleLineHeight;
+            return Commons.Editor.EditorGUI.GetIndentedRect(new Rect(position.x, position.y + offset, position.width, position.height - offset), EditorGUI.indentLevel + 1);
+        }
+
+        private void DisplayValueProperty(Rect valueRect)
         {
             if (m_useLiteralProperty.boolValue)
             {
-                EditorGUI.PropertyField(propertyRect, m_literalValueProperty);
+                EditorGUI.PropertyField(valueRect, m_literalValueProperty);
             }
             else if (m_variableProperty.objectReferenceValue != null)
             {
@@ -96,11 +103,11 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
                     {
                         m_variableCurrentValueType = variableObject.targetObject.GetType().BaseType.GetGenericArguments()[0];
                     }
-                    EditorGUI.ObjectField(propertyRect, variableCurrentValueProperty.displayName, variableCurrentValueProperty.objectReferenceValue, m_variableCurrentValueType, false);
+                    EditorGUI.ObjectField(valueRect, variableCurrentValueProperty.displayName, variableCurrentValueProperty.objectReferenceValue, m_variableCurrentValueType, false);
                 }
                 else
                 {
-                    EditorGUI.PropertyField(propertyRect, variableObject.FindProperty("m_currentValue"));
+                    EditorGUI.PropertyField(valueRect, variableObject.FindProperty("m_currentValue"));
                 }
                 EditorGUI.EndDisabledGroup();
             }
