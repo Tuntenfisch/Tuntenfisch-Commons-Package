@@ -63,13 +63,13 @@ namespace Tuntenfisch.Commons.Editor
         public static int ObjectFieldWithPopupOptions<T>(GUIContent label, ref T obj, int selectedPopupOption, string[] popupOptions) where T : Object
         {
             Rect position = UnityEditor.EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(UnityEditor.EditorGUIUtility.singleLineHeight));
-            return EditorGUI.ObjectFieldWithPopupOptions(position, label, ref obj, selectedPopupOption, popupOptions);
+            return EditorGUI.ObjectFieldWithPaneOptions(position, label, ref obj, selectedPopupOption, popupOptions);
         }
 
         public static int PropertyFieldWithPopupOptions(GUIContent label, SerializedProperty property, int selectedPopupOption, string[] popupOptions)
         {
             Rect position = UnityEditor.EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(UnityEditor.EditorGUIUtility.singleLineHeight));
-            return EditorGUI.PropertyFieldWithPopupOptions(position, label, property, selectedPopupOption, popupOptions);
+            return EditorGUI.PropertyFieldWithPaneOptions(position, label, property, selectedPopupOption, popupOptions);
         }
 
         public static int PaneOptions(int selectedPaneOptionIndex, string[] popupOptions, params GUILayoutOption[] options)

@@ -60,23 +60,23 @@ namespace Tuntenfisch.Commons.Editor
             maxRange = math.clamp(maxRange, minRange, maxLimit);
         }
 
-        public static int ObjectFieldWithPopupOptions<T>(Rect position, GUIContent label, ref T obj, int selectedPopupOption, string[] popupOptions) where T : UnityEngine.Object
+        public static int ObjectFieldWithPaneOptions<T>(Rect position, GUIContent label, ref T obj, int selectedPaneOption, string[] paneOptions) where T : UnityEngine.Object
         {
-            (Rect variableRect, Rect buttonRect) = FieldWithPopupOptionsPrefixLabel(position, label);
+            (Rect fieldRect, Rect paneOptionsRect) = GetFieldAndPaneOptionsRect(position, label);
 
-            obj = UnityEditor.EditorGUI.ObjectField(variableRect, GUIContent.none, obj, typeof(T), false) as T;
-            return UnityEditor.EditorGUI.Popup(buttonRect, selectedPopupOption, popupOptions, EditorGUIStyles.PaneOptionsSytle);
+            obj = UnityEditor.EditorGUI.ObjectField(fieldRect, GUIContent.none, obj, typeof(T), false) as T;
+            return PaneOptions(paneOptionsRect, selectedPaneOption, paneOptions);
         }
 
-        public static int PropertyFieldWithPopupOptions(Rect position, GUIContent label, SerializedProperty property, int selectedPopupOption, string[] popupOptions)
+        public static int PropertyFieldWithPaneOptions(Rect position, GUIContent label, SerializedProperty property, int selectedPaneOption, string[] paneOptions)
         {
-            (Rect variableRect, Rect buttonRect) = FieldWithPopupOptionsPrefixLabel(position, label);
+            (Rect fieldRect, Rect paneOptionsRect) = GetFieldAndPaneOptionsRect(position, label);
 
             if (property != null)
             {
-                UnityEditor.EditorGUI.PropertyField(variableRect, property, GUIContent.none);
+                UnityEditor.EditorGUI.PropertyField(fieldRect, property, GUIContent.none);
             }
-            return UnityEditor.EditorGUI.Popup(buttonRect, selectedPopupOption, popupOptions, EditorGUIStyles.PaneOptionsSytle);
+            return PaneOptions(paneOptionsRect, selectedPaneOption, paneOptions);
         }
 
         public static int PaneOptions(Rect position, int selectedPaneOptionIndex, string[] popupOptions)
@@ -87,13 +87,13 @@ namespace Tuntenfisch.Commons.Editor
         #endregion
 
         #region Private Methods
-        private static (Rect, Rect) FieldWithPopupOptionsPrefixLabel(Rect position, GUIContent label)
+        private static (Rect, Rect) GetFieldAndPaneOptionsRect(Rect position, GUIContent label)
         {
             Rect controlRect = UnityEditor.EditorGUI.PrefixLabel(position, label);
-            Rect variableRect = new Rect(controlRect.x, controlRect.y, controlRect.width - EditorGUIStyles.PaneOptionsSytle.fixedWidth, controlRect.height);
-            Rect buttonRect = new Rect(variableRect.xMax, controlRect.y + 0.5f * (variableRect.height - EditorGUIStyles.PaneOptionsSytle.fixedHeight), EditorGUIStyles.PaneOptionsSytle.fixedWidth, variableRect.height);
+            Rect fieldRect = new Rect(controlRect.x, controlRect.y, controlRect.width - EditorGUIStyles.PaneOptionsSytle.fixedWidth - EditorGUIUtility.Spacing.x, controlRect.height);
+            Rect paneOptionsRect = new Rect(fieldRect.xMax + EditorGUIUtility.Spacing.x, controlRect.y + 0.5f * (fieldRect.height - EditorGUIStyles.PaneOptionsSytle.fixedHeight), EditorGUIStyles.PaneOptionsSytle.fixedWidth, fieldRect.height);
 
-            return (variableRect, buttonRect);
+            return (fieldRect, paneOptionsRect);
         }
         #endregion
     }

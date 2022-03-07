@@ -70,7 +70,7 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
         {
             EditorGUI.BeginChangeCheck();
             int selectedPopupOption = m_useLiteralProperty.boolValue ? 0 : 1;
-            selectedPopupOption = Commons.Editor.EditorGUI.PropertyFieldWithPopupOptions(variableRect, label, m_useLiteralProperty.boolValue ? null : m_variableProperty, selectedPopupOption, s_popupOptions);
+            selectedPopupOption = Commons.Editor.EditorGUI.PropertyFieldWithPaneOptions(variableRect, label, m_useLiteralProperty.boolValue ? null : m_variableProperty, selectedPopupOption, s_popupOptions);
 
             if (EditorGUI.EndChangeCheck())
             {

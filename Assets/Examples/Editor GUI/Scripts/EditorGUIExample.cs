@@ -58,7 +58,7 @@ public class EditorGUIExampleEditor : Editor
         }
 
         Rect rect = EditorGUILayout.GetControlRect(GUILayout.ExpandWidth(true), GUILayout.Height(2.0f * EditorGUIUtility.singleLineHeight));
-        int selectedPopupOption = Tuntenfisch.Commons.Editor.EditorGUI.PropertyFieldWithPopupOptions(rect, new GUIContent(m_gameObjectProperty.displayName), m_gameObjectProperty, -1, new string[] { "Press me" });
+        int selectedPopupOption = Tuntenfisch.Commons.Editor.EditorGUI.PropertyFieldWithPaneOptions(rect, new GUIContent(m_gameObjectProperty.displayName), m_gameObjectProperty, -1, new string[] { "Press me" });
 
         switch (selectedPopupOption)
         {
