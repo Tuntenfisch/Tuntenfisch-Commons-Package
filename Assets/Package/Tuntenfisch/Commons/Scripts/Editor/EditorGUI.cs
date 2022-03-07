@@ -91,7 +91,7 @@ namespace Tuntenfisch.Commons.Editor
         {
             Rect controlRect = UnityEditor.EditorGUI.PrefixLabel(position, label);
             Rect fieldRect = new Rect(controlRect.x, controlRect.y, controlRect.width - EditorGUIStyles.PaneOptionsSytle.fixedWidth - EditorGUIUtility.Spacing.x, controlRect.height);
-            Rect paneOptionsRect = new Rect(fieldRect.xMax + EditorGUIUtility.Spacing.x, controlRect.y + 0.5f * (fieldRect.height - EditorGUIStyles.PaneOptionsSytle.fixedHeight), EditorGUIStyles.PaneOptionsSytle.fixedWidth, fieldRect.height);
+            Rect paneOptionsRect = new Rect(fieldRect.xMax + EditorGUIUtility.Spacing.x, controlRect.y, EditorGUIStyles.PaneOptionsSytle.fixedWidth, fieldRect.height);
 
             return (fieldRect, paneOptionsRect);
         }
