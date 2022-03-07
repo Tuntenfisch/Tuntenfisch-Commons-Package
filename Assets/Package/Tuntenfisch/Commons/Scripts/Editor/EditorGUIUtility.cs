@@ -36,6 +36,16 @@ namespace Tuntenfisch.Commons.Editor
         }
 
         #region Public Methods
+        public static Rect GetIndentedRect(Rect rect, int indentLevel)
+        {
+            int oldIndentLevel = UnityEditor.EditorGUI.indentLevel;
+            UnityEditor.EditorGUI.indentLevel = indentLevel;
+            rect = UnityEditor.EditorGUI.IndentedRect(rect);
+            UnityEditor.EditorGUI.indentLevel = oldIndentLevel;
+
+            return rect;
+        }
+
         public static bool HasContent(GUIContent content)
         {
             if (content == null)

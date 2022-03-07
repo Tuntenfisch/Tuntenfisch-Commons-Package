@@ -48,6 +48,7 @@ namespace Tuntenfisch.Commons.Editor
         public static void InsertArrayElementAtIndex(this SerializedProperty property, int index, object element)
         {
             property.InsertArrayElementAtIndex(index);
+            property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
             SerializedProperty elementProperty = property.GetArrayElementAtIndex(index);
             elementProperty.SetValue(element);
         }

@@ -82,7 +82,7 @@ namespace Tuntenfisch.Commons.Coupling.Variables.Editor
         private Rect GetValueRect(Rect position)
         {
             float offset = EditorGUIUtility.standardVerticalSpacing + EditorGUIUtility.singleLineHeight;
-            return Commons.Editor.EditorGUI.GetIndentedRect(new Rect(position.x, position.y + offset, position.width, position.height - offset), EditorGUI.indentLevel + 1);
+            return Commons.Editor.EditorGUIUtility.GetIndentedRect(new Rect(position.x, position.y + offset, position.width, position.height - offset), EditorGUI.indentLevel + 1);
         }
 
         private void DisplayValueProperty(Rect valueRect)

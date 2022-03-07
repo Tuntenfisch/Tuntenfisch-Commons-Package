@@ -84,16 +84,6 @@ namespace Tuntenfisch.Commons.Editor
             Rect rect = new Rect(position.x, position.y + 0.5f * (position.height - EditorGUIStyles.PaneOptionsSytle.fixedHeight), EditorGUIStyles.PaneOptionsSytle.fixedWidth, position.height);
             return UnityEditor.EditorGUI.Popup(rect, selectedPaneOptionIndex, popupOptions, EditorGUIStyles.PaneOptionsSytle);
         }
-
-        public static Rect GetIndentedRect(Rect rect, int indentLevel)
-        {
-            int oldIndentLevel = UnityEditor.EditorGUI.indentLevel;
-            UnityEditor.EditorGUI.indentLevel = indentLevel;
-            rect = UnityEditor.EditorGUI.IndentedRect(rect);
-            UnityEditor.EditorGUI.indentLevel = oldIndentLevel;
-
-            return rect;
-        }
         #endregion
 
         #region Private Methods
