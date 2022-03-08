@@ -15,6 +15,11 @@ namespace Tuntenfisch.Commons.Coupling.Editor
         #endregion
 
         #region Unity Callbacks
+        protected virtual void OnEnable()
+        {
+            SceneView.duringSceneGui += OnSceneGUI;
+        }
+
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -25,12 +30,17 @@ namespace Tuntenfisch.Commons.Coupling.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void OnSceneGUI()
+        private void OnSceneGUI(SceneView sceneView)
         {
             foreach ((GameObject gameObject, Reference reference) in from pair in m_references where pair.Key != null select pair)
             {
                 Commons.Editor.Handles.ColoredLabel(gameObject.transform.position, $"<b>{gameObject.name}</b>\n<i>{reference.AccessFlags} Access</i>", reference.LabelColor);
             }
+        }
+
+        protected void OnDisable()
+        {
+            SceneView.duringSceneGui -= OnSceneGUI;
         }
         #endregion
 

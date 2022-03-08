@@ -16,6 +16,7 @@ namespace Tuntenfisch.Commons.Editor
         {
             CenteredLabelStyle = new GUIStyle(GUI.skin.label);
             CenteredLabelStyle.alignment = TextAnchor.MiddleCenter;
+            CenteredLabelStyle.richText = true;
 
             PaneOptionsSytle = new GUIStyle("PaneOptions");
             PaneOptionsSytle.imagePosition = ImagePosition.ImageOnly;

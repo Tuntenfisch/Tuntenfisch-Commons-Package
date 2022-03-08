@@ -13,8 +13,9 @@ namespace Tuntenfisch.Commons.Coupling.Sets.Editor
         #endregion
 
         #region Unity Callbacks
-        protected void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             m_serializedSetProperty = serializedObject.FindProperty("m_serializedSet");
             m_elementType = target.GetType().BaseType.GetGenericArguments()[0];
         }
