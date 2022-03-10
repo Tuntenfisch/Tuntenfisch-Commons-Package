@@ -10,6 +10,11 @@ namespace Tuntenfisch.Commons.Graphics.UI
         {
             return new Rect((float2)rect.min - 0.5f * padding, (float2)rect.size + padding);
         }
+
+        public static Rect Pad(this Rect rect, float x, float y)
+        {
+            return rect.Pad(new float2(x, y));
+        }
         #endregion
     }
 }

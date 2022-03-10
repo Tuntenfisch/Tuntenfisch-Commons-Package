@@ -404,7 +404,9 @@ MonoBehaviour:
     x: 0
     y: 0
   m_gameObject: {fileID: 0}
-  m_test:
-    m_literalValue: {fileID: 0}
-    m_useLiteral: 0
-    m_variable: {fileID: 11400000, guid: 17c8394650a7f8c419d7fa84879e40d4, type: 2}
+  m_dictionary:
+    m_keyValuePairs: []
+    m_keyValuePair:
+      Key: {x: 11.22, y: -6.27, z: 0}
+      Value: 
+  m_list: 

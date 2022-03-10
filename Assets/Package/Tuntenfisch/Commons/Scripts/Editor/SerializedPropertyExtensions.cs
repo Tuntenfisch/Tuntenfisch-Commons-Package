@@ -123,6 +123,7 @@ namespace Tuntenfisch.Commons.Editor
             return obj;
         }
 
+
         private static string SanitizePropertyPath(string propertyPath)
         {
             return propertyPath.Replace(".Array.data[", "[");

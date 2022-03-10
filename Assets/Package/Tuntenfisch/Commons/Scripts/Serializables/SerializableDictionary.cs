@@ -9,9 +9,9 @@ namespace Tuntenfisch.Commons.Serializables
     {
         #region Inspector Fields
         [SerializeField]
-        private List<TKey> m_keys;
+        private List<SerializableKeyValuePair> m_keyValuePairs = new List<SerializableKeyValuePair>();
         [SerializeField]
-        private List<TValue> m_values;
+        private SerializableKeyValuePair m_keyValuePair;
         #endregion
 
         #region public Methods
@@ -19,27 +19,31 @@ namespace Tuntenfisch.Commons.Serializables
         {
             Clear();
             
-            if (m_keys.Count != m_values.Count)
+            foreach (SerializableKeyValuePair pair in m_keyValuePairs)
             {
-                throw new Exception("Key count didn't match value count during deserialization. Ensure key and value types are serializable.");
-            }
-
-            for (int index = 0; index < m_keys.Count; index++)
-            {
-                this[m_keys[index]] = m_values[index];
+                this[pair.Key] = pair.Value;
             }
         }
 
         public void OnBeforeSerialize()
         {
-            m_keys.Clear();
-            m_values.Clear();
-
+            m_keyValuePairs.Clear();
+            
             foreach (KeyValuePair<TKey, TValue> pair in this)
             {
-                m_keys.Add(pair.Key);
-                m_values.Add(pair.Value);
+                m_keyValuePairs.Add(new SerializableKeyValuePair { Key = pair.Key, Value = pair.Value });
             }
+        }
+        #endregion
+
+        #region Private Structs, Classes and Enums
+        [Serializable]
+        private struct SerializableKeyValuePair
+        {
+            #region Public Fields
+            public TKey Key;
+            public TValue Value;
+            #endregion
         }
         #endregion
     }
