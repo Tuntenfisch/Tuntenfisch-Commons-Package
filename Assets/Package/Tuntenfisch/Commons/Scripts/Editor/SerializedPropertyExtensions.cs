@@ -25,8 +25,8 @@ namespace Tuntenfisch.Commons.Editor
 
             if (propertyPath.Contains('.'))
             {
-                lastFieldName = propertyPath[(propertyPath.LastIndexOf('.') + 1)..];
-                propertyPath = propertyPath[0..propertyPath.LastIndexOf('.')];
+                lastFieldName = propertyPath.Substring(propertyPath.LastIndexOf('.') + 1);
+                propertyPath = propertyPath.Substring(0, propertyPath.LastIndexOf('.'));
             }
             else
             {
