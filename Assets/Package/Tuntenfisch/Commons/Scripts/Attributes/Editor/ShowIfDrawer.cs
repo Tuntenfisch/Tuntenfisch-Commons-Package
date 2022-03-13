@@ -38,13 +38,22 @@ namespace Tuntenfisch.Commons.Attributes.Editor
         {
             SerializedProperty serializedProperty = property.serializedObject.FindProperty(showIfAttribute.FieldName);
 
-            return serializedProperty.propertyType switch
+            switch (serializedProperty.propertyType)
             {
-                SerializedPropertyType.Boolean => serializedProperty.boolValue == (bool)showIfAttribute.Value,
-                SerializedPropertyType.Float => serializedProperty.floatValue == (float)showIfAttribute.Value,
-                SerializedPropertyType.String => serializedProperty.stringValue == (string)showIfAttribute.Value,
-                SerializedPropertyType.Enum => serializedProperty.enumValueIndex == Array.IndexOf(Enum.GetValues(showIfAttribute.Value.GetType()), showIfAttribute.Value),
-                _ => true,
+                case SerializedPropertyType.Boolean:
+                    return serializedProperty.boolValue == (bool)showIfAttribute.Value;
+
+                case SerializedPropertyType.Float:
+                    return serializedProperty.floatValue == (float)showIfAttribute.Value;
+
+                case SerializedPropertyType.String:
+                    return serializedProperty.stringValue == (string)showIfAttribute.Value;
+
+                case SerializedPropertyType.Enum:
+                    return serializedProperty.enumValueIndex == Array.IndexOf(Enum.GetValues(showIfAttribute.Value.GetType()), showIfAttribute.Value);
+
+                default: 
+                    return true;
             };
         }
         #endregion

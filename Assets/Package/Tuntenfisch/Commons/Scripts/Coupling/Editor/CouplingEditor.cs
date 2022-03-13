@@ -160,12 +160,17 @@ namespace Tuntenfisch.Commons.Coupling.Editor
             #region Private Methods
             private Color GetLabelColor(AccessFlags accessFlags)
             {
-                return accessFlags switch
+                switch (accessFlags)
                 {
-                    AccessFlags.Read => new Color(1.0f, 0.0f, 0.0f, 0.75f),
-                    AccessFlags.Write => new Color(1.0f, 0.65f, 0.0f, 0.75f),
-                    _ => new Color(0.0f, 1.0f, 0.0f, 0.75f),
-                };
+                    case AccessFlags.Read:
+                        return new Color(1.0f, 0.0f, 0.0f, 0.75f);
+
+                    case AccessFlags.Write: 
+                        return new Color(1.0f, 0.65f, 0.0f, 0.75f);
+
+                    default:
+                        return new Color(0.0f, 1.0f, 0.0f, 0.75f);
+                }
             }
             #endregion
         }
