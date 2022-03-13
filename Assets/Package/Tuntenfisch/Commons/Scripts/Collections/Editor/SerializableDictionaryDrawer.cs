@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
-namespace Tuntenfisch.Commons.Serializables.Editor
+namespace Tuntenfisch.Commons.Collections.Editor
 {
     [CustomPropertyDrawer(typeof(SerializableDictionary<,>), useForChildren: true)]
     public class SerializableDictionaryDrawer : PropertyDrawer

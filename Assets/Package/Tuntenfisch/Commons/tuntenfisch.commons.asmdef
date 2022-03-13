@@ -3,6 +3,7 @@
     "rootNamespace": "",
     "references": [
         "Unity.Animation.Rigging",
+        "Unity.Collections",
         "Unity.InputSystem",
         "Unity.Mathematics",
         "Unity.RenderPipelines.Core.Runtime",
@@ -11,7 +12,7 @@
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

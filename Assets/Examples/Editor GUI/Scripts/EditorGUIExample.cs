@@ -9,14 +9,10 @@ public class EditorGUIExample : MonoBehaviour
     private float2 m_range;
     [SerializeField]
     private GameObject m_gameObject;
-    [SerializeField]
-    private Tuntenfisch.Commons.Serializables.SerializableDictionary<string, Tuntenfisch.Commons.Environment.WindProperties> m_dictionary;
-    [SerializeField]
-    private System.Collections.Generic.List<int> m_list;
     #endregion
 }
 
-// [CustomEditor(typeof(EditorGUIExample))]
+[CustomEditor(typeof(EditorGUIExample))]
 public class EditorGUIExampleEditor : Editor
 {
     #region Private Fields
