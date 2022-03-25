@@ -22,7 +22,6 @@ namespace Tuntenfisch.Commons.Audio
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
 #endif
-
             m_pool = new ObjectPool<AudioSource>
             (
                 () =>
