@@ -10,8 +10,8 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
     public class ShowIfDecorator : MaterialPropertyDrawer
     {
         #region Private Fields
-        private string m_keyword;
-        private bool m_enabled;
+        private readonly string m_keyword;
+        private readonly bool m_enabled;
         #endregion
 
         #region Unity Callbacks
@@ -19,18 +19,16 @@ namespace Tuntenfisch.Commons.Attributes.Shaders.Editor
         {
             // This approach could break at any time if Unity decides to change their internal implementation of MaterialPropertyHandler:
             // https://github.com/Unity-Technologies/UnityCsReference/blob/a048de916b23331bf6dfe92c4a6c205989b83b4f/Editor/Mono/Inspector/MaterialPropertyDrawer.cs
+            Type type = typeof(MaterialPropertyDrawer).Assembly.GetType("UnityEditor.MaterialPropertyHandler");
+            FieldInfo fieldInfo = type.GetField("s_PropertyHandlers", BindingFlags.Static | BindingFlags.NonPublic);
+            IDictionary dictionary = fieldInfo.GetValue(null) as IDictionary;
+
             if (ShouldShow(editor))
             {
-                Type type = typeof(MaterialPropertyDrawer).Assembly.GetType("UnityEditor.MaterialPropertyHandler");
-                FieldInfo fieldInfo = type.GetField("s_PropertyHandlers", BindingFlags.Static | BindingFlags.NonPublic);
-                IDictionary dictionary = fieldInfo.GetValue(null) as IDictionary;
                 dictionary.Remove((editor.target as Material).shader.GetInstanceID() + "_" + property.name);
             }
             else
             {
-                Type type = typeof(MaterialPropertyDrawer).Assembly.GetType("UnityEditor.MaterialPropertyHandler");
-                FieldInfo fieldInfo = type.GetField("s_PropertyHandlers", BindingFlags.Static | BindingFlags.NonPublic);
-                IDictionary dictionary = fieldInfo.GetValue(null) as IDictionary;
                 object propertyHandle = dictionary[(editor.target as Material).shader.GetInstanceID() + "_" + property.name];
                 FieldInfo propertyDrawer = propertyHandle.GetType().GetField("m_PropertyDrawer", BindingFlags.Instance | BindingFlags.NonPublic);
                 propertyDrawer.SetValue(propertyHandle, new EmptyDrawer());

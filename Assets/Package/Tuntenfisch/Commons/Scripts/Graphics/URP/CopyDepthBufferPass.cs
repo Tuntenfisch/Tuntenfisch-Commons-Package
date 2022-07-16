@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_2021
+
+using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -39,3 +41,4 @@ namespace Tuntenfisch.Commons.Graphics.URP
         #endregion
     }
 }
+#endif

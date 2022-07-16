@@ -404,9 +404,3 @@ MonoBehaviour:
     x: 0
     y: 0
   m_gameObject: {fileID: 0}
-  m_dictionary:
-    m_keyValuePairs: []
-    m_keyValuePair:
-      Key: {x: 11.22, y: -6.27, z: 0}
-      Value: 
-  m_list: 
